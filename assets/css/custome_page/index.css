@@ -1,0 +1,141 @@
+.custome_card {
+    height: 360px; 
+}
+
+/* h6.card-title {
+    color: goldenrod ;
+} */
+
+p.card-title {
+    font-weight: bold;
+}
+p.card-text {
+    color: green;
+}
+
+img.card-img-top {
+    border: 1px solid #ededed;
+    width: 260px;
+    height: 180px;    
+}
+
+div.custome_card {
+    border: 2px solid #4a1414;
+}
+
+body {
+    background-color: #e0e0e0;
+}
+
+/* Leap Motion */
+#output_deg1, #output_deg2, #output_deg3, #output_deg4 {
+    font-size: 31px;
+    color: #005d98;
+    text-align: left;
+    bottom: 18px;
+}
+label.checkbox-inline {
+    font-size: 18px;
+    color: #100286;
+    font-weight: bold;
+}
+#thumb_deg1, #thumb_deg2 {
+    font-size: 22px;
+    color: #005d98;
+    text-align: left;
+    bottom: 18px;
+}
+#index_deg1, #index_deg2, #index_deg3 {
+    font-size: 22px;
+    color: #005d98;
+    text-align: left;
+    bottom: 18px;
+}
+#middle_deg1, #middle_deg2, #middle_deg3 {
+    font-size: 22px;
+    color: #005d98;
+    text-align: left;
+    bottom: 18px;
+}
+#ring_deg1, #ring_deg2, #ring_deg3 {
+    font-size: 22px;
+    color: #005d98;
+    text-align: left;
+    bottom: 18px;
+}
+#pinky_deg1, #pinky_deg2, #pinky_deg3 {
+    font-size: 22px;
+    color: #005d98;
+    text-align: left;
+    bottom: 18px;
+}
+
+#hand_type2 {
+    font-size: 22px;
+    color: #be0a4f;
+    text-align: left;
+    bottom: 18px;
+}
+
+#flexion_deg, #extension_deg, #radial_deg, #ulnar_deg {
+    font-size: 31px;
+    color: #005d98;
+    text-align: left;
+    bottom: 18px;
+}
+
+#flexion_max, #flexion_min, #extension_max, #extension_min, #radial_max, #radial_min, #ulnar_max, #ulnar_min{
+    font-size: 27px;
+    color: #026daf;
+    text-align: left;
+    bottom: 18px;
+}
+
+#hand_type1, #hand_type3, #hand_type4 {
+    font-size: 31px;
+    color: #be0a4f;
+    text-align: left;
+    bottom: 18px;
+}
+
+label.radio-inline {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* #overlay {
+	background-color: #ff0000;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: 0;
+	left: 0;
+} */
+.box{
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 15px 10px;
+    margin: 15px 0;
+    position: relative;
+    height: auto;
+    animation: scale 0.4s;
+}
+
+.box p{
+    font-size: 14px;
+    font-family: sans-serif;
+    word-wrap: break-word;
+}
+.notes button{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+}
+
+span.text_necessary {
+    color: red;
+}

@@ -1,0 +1,3112 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+	<title>Hand Tracking System 1.0</title>
+	<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+	
+	<!-- CSS Files -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/css/paper-bootstrap-wizard.css" rel="stylesheet" />
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+	<script src="assets/js/jquery-3.5.1.min.js"></script>
+	<script src="assets/js/js-bootstrap-3.4.1.min.js"></script>
+	  
+	<!-- Date Picker -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/> -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.th.min.js"></script> -->
+	<script src="assets/js/bootstrap-datepicker-1.9.0.min.js"></script>
+	<script src="assets/js/bootstrap-datepicker-1.9.0.th.min.js"></script>
+	<link href="assets/css/bootstrap-datepicker-1.9.0.min.css" rel="stylesheet" />
+
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="assets/css/demo.css" rel="stylesheet" />
+
+	<!-- Fonts and Icons -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link href="assets/css/themify-icons.css" rel="stylesheet">
+
+	<!-- LeapMotion LeapJs and Plugin -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r67/three.js"></script> -->
+    <!-- <script src="https://js.leapmotion.com/leap-1.1.0.js"></script> -->
+    <!-- <script src="http://js.leapmotion.com/leap-plugins-0.1.12.js"></script> -->
+    <!-- <script src="http://js.leapmotion.com/leap.rigged-hand-0.1.4.min.js"></script> -->
+	<script src="assets/js/three.r67.js"></script>
+	<script src="assets/js/leap-1.1.0.js"></script>
+	<script src="assets/js/leap-plugins-0.1.12.js"></script>
+	<script src="assets/js/leap.rigged-hand-0.1.4.js"></script>
+    <link rel="stylesheet" href="assets/css/custome_page/index.css">
+
+	 <style>
+        canvas {
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+<section class="contact-form">
+	<div>
+		<div class="container-fluid">
+			<div class="tab-content">
+			  <div id="home" class="tab-pane fade in active">
+				<div class="col-sm-8 col-sm-offset-2 h-5">
+		            <div class="wizard-container">
+		                <div class="card wizard-card" data-color="green"> 
+		                    <div class="wizard-header">
+		                        <div class="text-center">
+									<img src="assets/img/icon-bg.png" style="width:20%"> 
+									<h5 class="text-center"><b>Hand Tracking System </b>(Version: 1.0)</h5><br>
+								</div>
+		                    </div>
+							<div class="container-fluid">
+								<div class="col-sm-10 col-sm-offset-1" style="text-align: center;">
+									<div class="form-group col-sm-12">
+										<a href="webMonitor/webPatients.html" class="btn btn-fill btn-info"><div style="width:150px;"><i class="fa fa-plus-square fa-4x"></i><br><br>เพิ่มข้อมูลผู้ป่วยรายใหม่</div></a>
+										<a data-toggle="tab" href="#menu2" class="btn btn-fill btn btn-success"><div style="width:150px;"><i class="fa fa-download fa-4x"></i><br><br>เริ่มการรักษา</div></a>
+										<a href="webMonitor/webMonitor.html" class="btn btn-fill btn btn-warning"><div style="width:150px;"><i class="fa fa-line-chart fa-4x"></i><br><br>สรุปผลรายงาน</div></a>
+									</div>
+								</div>
+							</div>
+		                </div>
+		            </div>
+		        </div>	
+			  </div>
+			  <!-- <div id="menu1" class="tab-pane fade">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="container-fluid">
+							<br>
+							<div class="container-fluid">
+								<div class="card wizard-card" data-color="green">
+									<form name="menuOne">
+										<div class="wizard-header">
+											<h3 class="wizard-title">เพิ่มข้อมูลผู้ป่วยรายใหม่เเละอาการที่ต้องการรักษา</h3>
+										</div>
+										<div class="wizard-navigation">
+											<div class="progress-with-circle">
+												<div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4" style="width: 15%;"></div>
+											</div>
+											<ul>
+												<li aria-disabled="true">
+													<a href="#patient_information" data-toggle="tab">
+														<div class="icon-circle">
+															<i class="fa fa-user-plus"></i>
+														</div>
+														ข้อมูลผู้ป่วย
+													</a>
+												</li>
+												<li aria-disabled="true">
+													<a href="#illness" data-toggle="tab">
+														<div class="icon-circle">
+															<i class="fa fa-clipboard"></i>
+														</div>
+														อาการเจ็บป่วย
+													</a>
+												</li>
+												<li>
+													<a href="#hi_illness" data-toggle="tab">
+														<div class="icon-circle">
+															<i class="fa fa-stethoscope"></i>
+														</div>
+														ประวัติการเจ็บป่วย
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="tab-content">
+											<div class="tab-pane" id="patient_information">
+												<h5 class="info-text"> ข้อมูลผู้ป่วยเเละประวัติการเจ็บป่วย</h5>
+												<div class="row">
+													<div class="form-group col-sm-6"> 
+														<label for="physiotherapist_number">ชื่อนักกายภาพบำบัด<span class="text_necessary">*</span></label>
+														<div class="mb-2 col-sm-12">
+															<input type="text" class="form-control" name="physiotherapist_number" id="physiotherapist_number" placeholder="ชื่อนักกายภาพบำบัด" autocomplete="off" value=""  required title="กรุณากรอกชื่อนักกายภาพบำบัด" >
+														</div>
+													</div><br><br><br><br><br>
+													<hr>
+													<div class="form-group col-sm-4"> 
+														<label for="patient_number">หมายเลขของผู้ป่วย<span class="text_necessary">*</span></label>
+														<div class="mb-2 col-sm-12">
+															<input type="text" class="form-control" name="patient_number" id="patient_number" placeholder="หมายเลขของผู้ป่วย" maxlength="8" pattern="[0-9]{8}" autocomplete="off" value=""  required title="กรุณากรอกหมายเลขผู้ป่วย">
+														</div>
+													</div>
+													<div class="form-group col-md-9">
+														<label for="f_name">ชื่อ - </label>
+														<div class="mb-2 col-sm-12">
+															<input type="text" class="form-control" name="f_name" id="f_name" placeholder="ชื่อ"autocomplete="off" value=""  required title="กรุณากรอกชื่อผู้ป่วย">
+														</div>
+														<label for="l_name">นามสกุล</label><span class="text_necessary">*</span>
+														<div class="mb-2 col-sm-12">
+															<input type="text" class="form-control" name="l_name" id="l_name" placeholder="นามสกุล"autocomplete="off" value=""  required title="กรุณากรอกนามสกุล">
+														</div>
+													</div>
+													<div class="form-group col-md-3">
+														<label for="gender">เพศ</label><span class="text_necessary">*</span>
+														<div class="col">
+															<select class="form-control"  id="gender" name="gender" required title="กรุณาเลือกเพศผู้ป่วย">
+															 <option value="">เลือกเพศ</option>
+															 <option value="ชาย">ชาย</option>
+															 <option value="หญิง">หญิง</option>
+														   </select>              
+														 </div>  
+													</div>
+													<div class="form-group col-md-4">
+														<label for="birthday">วันเกิด</label><span class="text_necessary">*</span>
+														<div class="mb-2 col-sm-12">
+															<input class="form-control" id="birthday" name="birthday" placeholder="วัน/เดื่อน/ปี" type="date"autocomplete="off" value=""  required title="กรุณาเลือกวันเเกิดของผู้ป่วย">
+														</div>
+													</div>
+													<div class="form-group col-sm-5">
+														<label for="occupation">อาชีพของผู้ป่วย</label><span class="text_necessary">*</span>
+														<div class="mb-2 col-sm-12">
+															<input type="text" class="form-control" name="occupation" id="occupation" placeholder="อาชีพ"autocomplete="off" value=""  required title="กรุณากรอกอาชืพของผู้ป่วย">
+														</div>
+													</div>		                                	
+												</div>
+											</div>
+											<div class="tab-pane" id="illness">
+												<h5 class="info-text">อาการที่ต้องการรักษา</h5>
+												<div class="row ">
+													<div class="form-group col-md-9">
+														<label for="p_name">อาการของผู้ป่วย (Chief complaint)</label><span class="text_necessary">*</span>
+														<div class="mb-2 col-sm-12">
+															<input type="text" class="form-control" name="chief_compalaint" id="chief_compalaint" placeholder="ผู้ป่วยมาด้วยอาการ......เนื่องจากการ....เป็นเวลา x เดือน" required title="กรุณากรอกอาการที่ผู้ป่วยต้องการรักษา">
+														</div>
+													</div>
+													<div class="form-group col-md-12">
+														<label for="url">ประวัติการเจ็บป่วยในอดีต (Past history)</label>
+														<div for="url">
+															<label class="mb-2 mr-sm-2">
+																<input type="checkbox" name="past_history" id="past_history1" value="ไม่มีประวัติการแพ้ยา"> ไม่มีประวัติการแพ้ยา 
+															</label>&emsp;
+															<label class="mb-2 mr-sm-2">
+																<input type="checkbox" name="past_history" id="past_history2" value="ผู้ป่วยปฏิเสธการสูบบุหรี่"> ผู้ป่วยปฏิเสธการสูบบุหรี่ 
+															</label>&emsp;
+															<label class="mb-2 mr-sm-2">
+																<input type="checkbox" name="past_history" id="past_history3" value="ผู้ป่วยปฏิเสธการดื่มแอลกอฮอล์"> ผู้ป่วยปฏิเสธการดื่มแอลกอฮอล์
+															</label>&emsp;<br>
+															<label class="mb-2 mr-sm-2">
+																<input type="checkbox" name="past_history" id="past_history4" value="ผู้ป่วยไม่เคยได้รับอุบัติเหตุ"> ผู้ป่วยไม่เคยได้รับอุบัติเหตุ
+															</label>&emsp;
+															<label class="mb-2 mr-sm-2">
+																<input type="checkbox" name="past_history" id="past_history5" value="ผู้ป่วยปฏิเสธการผ่าตัด"> ผู้ป่วยปฏิเสธการผ่าตัด
+															</label>&emsp;
+															<label class="form-inline mr-sm-2">
+																<input onchange="pastmoreCheck();" type="checkbox" id="v_no" name="past_history"> อื่นๆ
+															</label>&emsp;
+															<label id="pastmore" style="display: none;" class="form-inline col-md-12">
+																<input class="form-control" rows="1" cols="90" style="width: 74.5%;" id="past_history6" placeholder="ประวัติการเจ็บป่วย อื่นๆ"></input>
+																<br>
+															</label>
+														</div>
+													</div>
+													<div class="form-group col-sm-12">
+														<label for="customFile">โรคประจำตัว (Underlying disease)</label><span class="text_necessary">*</span>
+														<div class="mb-2 col-sm-12">
+														<div class="custom-file">
+															<label><input onclick="udCheck();" type="radio" name="underlying_disease" id="ud_no" value="ไม่มี" checked> ไม่มี</label>&emsp;
+															<label><input onclick="udCheck();" type="radio" name="underlying_disease" id="ud_yes" value="มี"> มี</label>&emsp;
+															<br>
+															<div id="udCheck" style="display: none;">
+																<input  class="form-control" rows="1" cols="90" style="width: 74.5%;" name="congenital_disease_name" id="congenital_disease_name" placeholder="โรคประจำตัวของผู้ป่วย"></input>
+																<br>
+															</div>
+														</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane" id="hi_illness">
+												<h5 class="info-text">ประวัติการเจ็บป่วย</h5>
+												<div class="row">
+													<div class="form-group col-sm-4"> 
+														<label for="patient_number">วันที่</label>
+														<div class="mb-2 col-sm-12">
+															<input class="form-control" id="date_present" name="date_present" placeholder="วัน/เดื่อน/ปี" type="date" required title="กรุณาเลื่อกวันที่"><br>
+															<button class='btn btn-fill btn-danger btn-wd' onclick="history_illness_add()" id="add">เพิ่มข้อมูล</button>
+															<button class='btn btn-fill btn-danger btn-wd' onclick="history_illness_delete()" id="delete">ลบข้อมูลที่ลงไว้ล่าสุด</button>
+														</div>
+														<div class="mb-2 col-sm-12">
+															<p  id="history_illness"></p>
+														</div>
+													</div>
+													<div class="form-group col-sm-8"> 
+														<label for="patient_number">เหตุการณ์</label>
+														<div class="mb-2 col-sm-12">
+															<textarea class="form-control" rows="4" cols="90" style="width: 80%;" id="present_history" name="present_history" type="text" required title="กรุณากรอกเหตุการณ์"></textarea>
+														</div>
+													</div>
+													<div class="form-group col-sm-10">
+														<div class="notes"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="wizard-footer">
+											<div class="pull-right">
+												<input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='ถัดไป' />
+												<input type='button' class='btn btn-finish btn-fill btn-danger btn-wd' type="button" id="download-bth" name="download-bth" name='finish' value='Download ไฟล์' />
+											</div>
+		
+											<div class="pull-left">
+												<input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='ย้อนกลับ' />
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</form>
+								</div>
+							</div> 
+						</div>
+					</div> 
+				</div> 
+				<div class="fixed-plugin">
+					<div class="dropdown open">
+						<a href="index.html" >
+							<i class="fa fa-arrow-circle-o-left fa-3x"> </i>
+						</a>
+					</div>
+				</div>
+			  </div> -->
+			  <div id="menu2" class="tab-pane fade">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="container-fluid">
+							<!--      Wizard container        -->
+							<br>
+							<div class="container-fluid" id="leapmotin1">
+								<div class="card wizard-card" data-color="green">
+									<form name="menuTwo">
+										<div class="wizard-header">
+											<h3 class="wizard-title">บันทึกข้อมูลการตรวจ</h3>
+										</div>
+										<div class="wizard-navigation">
+											<div class="progress-with-circle">
+												<div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4" style="width: 15%;"></div>
+											</div>
+											<ul>
+												<li>
+													<a href="#patient_info" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+														<div class="icon-circle">
+															<i class="fa fa-user"></i>
+														</div>
+														ข้อมูลผู้ป่วย
+													</a>
+												</li>
+												<li>
+													<a href="#examination" data-toggle="tab">
+														<div class="icon-circle">
+															<i class="fa fa-heartbeat"></i>
+														</div>
+														ค่าการตรวจร่างกายผู้ป่วย
+													</a>
+												</li>
+												<li>
+													<a href="#leapmotion" data-toggle="tab">
+														<div class="icon-circle">
+															<i class="fa fa-cog"></i>
+														</div>
+														Range of motion 
+													</a>
+												</li>
+												<li>
+													<a href="#analyze_symptoms" data-toggle="tab">
+														<div class="icon-circle">
+															<i class="fa fa-user-md"></i>
+														</div>
+														วิเคราะห์อาการ
+													</a>
+												</li>
+												<li>
+													<a href="#plan_treatment" data-toggle="tab">
+														<div class="icon-circle">
+															<i class="fa fa-medkit"></i>
+														</div>
+														เเผนการรักษา
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="tab-content"  >
+											<div class="tab-pane fade  " id="patient_info"  >
+												<div class="row">
+													<h5 class="info-text"> ข้อมูลผู้ป่วยเเละอาการที่ต้องการรักษา</h5>
+													<div class="form-group col-sm-4"> 
+														<label for="fileInput">นำเข้าไฟล์ข้อมูลผู้ป่วย</label>
+														<i class="fa fa-download"></i>
+														<input type="file" class="form-control" name="fileInput" id="fileInput" required title="กรุณาเลือกไฟล์">
+													</div><br><br><br><br>
+													<hr>
+													<div class="mb-2 col-sm-12">
+														<b>ชื่อนักกายภาพที่ดูเเลผู้ป่วย</b> : <span id="physiotherapist_number1"></span><br>
+														<b>หมายเลขของผู้ป่วย</b> : <span id="patient_number1"></span><br>
+														<b>ชื่อ-สกุล ผู้ป่วย</b> : <span id="f_name1"></span>  <span id="l_name1"></span><br>
+														<b>เพศของผู้ป่วย</b> : <span id="gender1"></span>&nbsp;&nbsp;<b>วันเกิดของผู้ป่วย</b> : <span id="birthday1"></span><br>
+														<b>อาการที่ต้องการรักษา</b> : <span id="pt_diagnosis1"></span>    
+													</div>                           	
+												</div>
+											</div>
+											<div class="tab-pane fade " id="examination">
+												<h5 class="info-text">การตรวจร่างกายผู้ป่วย </h5>
+												<div class="row ">
+													<div class="form-group col-md-12">
+														<label for="p_name">สัญญาณชีพ (Vital signs)<span class="text_necessary">*</span></label><br>
+														<div class="form-inline">
+															<div class="mb-2 col-sm-12">
+																<label for="vsign">HR : <input type="text" class="form-control mb-2 mr-sm-2" id="hr" name="hr" maxlength="3" size="8" placeholder="ชีพจร" required  title="*"> b/m </label>&emsp;&emsp;
+																<label for="vsign">BP : 
+																	<input type="text" class="form-control mb-2 mr-sm-2" id="bp_mm"  name="bp_mm" maxlength="3" size="2" placeholder="ความดันโลหิต" required  title="*">/<input type="text" class="form-control mb-2 mr-sm-2" id="bp_hg"  name="bp_hg" maxlength="3" size="2" placeholder="ความดันโลหิต" required  title="*"> mm/Hg 
+																</label>&emsp;&emsp;
+																<label for="vsign">RR : <input type="text" class="form-control mb-2 mr-sm-2" id="rr" name="rr" maxlength="3" size="9" placeholder="อัตราการหายใจ" required  title="*"> times/min </label>
+															</div>
+														</div>
+													</div>
+													<div class="form-group col-md-12">
+														<label for="observation_inspection">การสังเกตและการตรวจสอบทั่วไป (General observation and Inspection):<span class="text_necessary">*</span></label>
+														<div class="mb-2 col-sm-12">
+															<textarea class="form-control" rows="6" cols="90" style="width: 73%;" name="observation_inspection" id="observation_inspection" required  title="กรุณากรอกการสังเกตและการตรวจสอบทั่วไป"></textarea>
+														</div>
+													</div>
+													<div class="form-group col-md-12">
+														<label style="color: rgb(106, 119, 138);">พฤติกรรมของอาการ (Behavior of symptom) : </label><br>
+														<div class="form-group col-md-9">
+															<label for="p_name1">ปัจจัยที่ทำให้เกิดอาการนั้น (Aggravating factor)<span class="text_necessary">*</span></label>
+															<div class="mb-2 col-sm-12">
+																<input type="text" class="form-control" name="aggravating_factor" id="aggravating_factor" placeholder="ปัจจัยที่ทำให้เกิดอาการ" maxlength="120" required  title="กรุณากรอกปัจจัยที่ทำให้เกิดอาการ">
+															</div>
+														</div>
+														<div class="form-group col-md-9">
+															<label for="p_name2">ปัจจัยที่ทำให้หายปวด (Easing factor)<span class="text_necessary">*</span></label>
+															<div class="mb-2 col-sm-12">
+																<input type="text" class="form-control" name="easing_factor" id="easing_factor" placeholder="ปัจจัยที่ทำให้หายปวด" maxlength="120" required  title="กรุณากรอกปัจจัยที่ทำให้หายปวด">
+															</div>
+														</div>
+														<div class="form-group col-md-12">
+															<label for="p_name">อาการใน 24 ชั่วโมง (24 hours pattern )<span class="text_necessary">*</span></label><br>
+															<div class="mb-2 col-sm-12">
+															<table>
+																<thead>
+																	<tr>
+																		<th width="12%">A.M. : </th>
+																		<td><input type="text" class="form-control mb-2 mr-sm-2" id="a_m" name="a_m" size="40" placeholder="ก่อนเที่ยงวัน"  maxlength="100" required title="กรุณากรอกอาการในช่วงก่อนเที่ยงวัน"></td>
+																	</tr>
+																	<tr>
+																		<th>P.M. : </th>
+																		<td><input type="text" class="form-control mb-2 mr-sm-2" id="p_m" name="p_m" size="40" placeholder="ก่อนเที่ยงคืน"  maxlength="100" required title="กรุณากรอกค่าอาการในช่วงก่อนเที่ยงคืน"></td>
+																	</tr>
+																	<tr>
+																		<th>Night : </th>
+																		<td><input type="text" class="form-control mb-2 mr-sm-2" id="night" name="night" size="40" placeholder="กลางคืน" maxlength="100" required title="กรุณากรอกค่าอาการในช่วงกลางคืน"></td>
+																	</tr>
+																</thead>											
+															</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="leapmotion" >
+												<h5 class="info-text">Action </h5>
+												<div class="row ">
+													<div class="form-group col-md-12">
+														<div class="row text-center">
+															<div class="col-lg-3 col-md-6 ">
+																<div class="card custome_card">
+																	<img class="card-img-top" src="assets/img/action3.jpg" alt="Distance between fingers" />
+																	<div class="card-body"><br>
+																		<p class="card-title">Distance between fingers</p>
+																		<p class="card-text">องศาการระหว่างนิ้วแต่ละนิ้ว</p>
+																	</div><hr>
+																	<button onclick="showleapmotion1()" class='btn btn-primary'>Tracking</button>
+																</div>
+															</div>
+															<div class="col-lg-3 col-md-6 ">
+																<div class="card custome_card">
+																	<img class="card-img-top" src="assets/img/action4.jpg" alt="..." />
+																	<div class="card-body"><br>
+																		<p class="card-title">Fold fingers</p>
+																		<p class="card-text">มุม Dip, Pip, Mcp ของแต่ละนิ้ว</p>
+																	</div><hr>
+																	<button onclick="showleapmotion2()" class='btn btn-primary'>Tracking</button>
+																</div>
+															</div>
+															<div class="col-lg-3 col-md-6">
+																<div class="card custome_card">
+																	<img class="card-img-top" src="assets/img/action1.jpg" alt="..." />
+																	<div class="card-body"><br>
+																		<p class="card-title">Flexion/Extension</p>
+																		<p class="card-text">ค่า Flexion และ Extension</p>
+																	</div><hr>
+																	<div class="card-footer">
+																		<button onclick="showleapmotion3()" class='btn btn-primary'>Tracking</button>
+																	</div>
+																</div>
+															</div>
+															<div class="col-lg-3 col-md-6">
+																<div class="card custome_card">
+																	<img class="card-img-top" src="assets/img/action2.jpg" alt="..." />
+																	<div class="card-body"><br>
+																		<p class="card-title">Radial/Ulnar deviation</p>
+																		<p class="card-text">ค่า Radial และ Ulnar deviation</p>
+																	</div><hr>
+																	<button onclick="showleapmotion4()" class='btn btn-primary'>Tracking</button>
+																</div>
+															</div>
+															<hr>
+															<div class="form-group col-sm-10">
+																	<table id="actTableAll" class="table table-striped">
+																		<thead>
+																		<tr>
+																			<th style="text-align:center;">Action</th>
+																			<th style="text-align:center;">Normal</th>
+																			<th style="text-align:center;">Passive</th>
+																			<th style="text-align:center;">Active</th>
+																			<th style="text-align:center;">Date</th>
+																		</tr>
+																		</thead>
+																		<tbody id="all_action">
+																		</tbody>
+																	</table>
+																	<span id="all_action_2"></span>
+																	<!-- <div class="results_act">
+																		<h5 style="text-align:left;">Action :</h5>
+																		<pre style="text-align:left;"></pre>
+																	</div> -->
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="analyze_symptoms">
+												<h5 class="info-text">วิเคราะห์อาการ</h5>
+												<div class="row">
+													<div class="form-group col-md-12">
+														<label for="pt_interpret">แปลผล<span class="text_necessary">*</span></label>
+														<div class="mb-2 col-sm-12">
+															<input type="text" class="form-control" cols="90" style="width: 73%;" name="pt_interpret" id="pt_interpret" placeholder="แปลผล :"required title="กรุณากรอกการแปลผล" >
+														</div>
+													</div>
+													<div class="form-group col-md-12">
+														<label for="analyses">วิเคราะห์ (Analyses)<span class="text_necessary">*</span></label>
+														<div class="mb-2 col-sm-12">
+															<textarea class="form-control" rows="4" cols="90" style="width: 73%;" name="analyses" id="analyses" required title="กรุณากรอกการวิเคราะห์อาการของผู้ป่วย"></textarea>
+														</div>
+													</div>   
+												</div><hr>
+											</div>
+											<div class="tab-pane  fade " id="plan_treatment">
+												<div class="row">
+													<h5 class="info-text">เเผนการรักษา</h5>
+													<div class="form-group col-md-12">
+														<label for="precaution">สิ่งที่ผู้ป่วยควรระวัง (Precaution)<span class="text_necessary">*</span></label>
+														<div class="mb-2 col-sm-12">
+															<input class="form-control" rows="1" cols="90" style="width: 73%;" name="precaution" id="precaution"required title="กรุณากรอกสิ่งที่ผู้ป่วยควรระวัง" >
+														</div>
+													</div>
+													<div class="form-group col-md-12">
+														<label for="treatment">การรักษา (Treatment)<span class="text_necessary">*</span></label>
+														<div class="mb-2 col-sm-12">
+															<textarea class="form-control" rows="4" cols="90" style="width: 73%;" name="treatment" id="treatment" required title="กรุณากรอกเเผนการรักษา" ></textarea>
+														</div>
+													</div>
+													<div class="col form-inline col-md-12">
+														<b><label class="mb-2 mr-sm-2">นัดตรวจครั้งถัดไป (Next Appointment) : </label></b>
+														<input class="form-control" id="examination_next" name="examination_next" placeholder="วัน/เดื่อน/ปี" type="text">
+													</div>
+												</div><hr>
+											</div>
+										</div>
+										<div class="wizard-footer">
+											<div class="pull-right">
+												<input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='ถัดไป' />
+												<input type='button' onclick="download1()" class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='บันทึกข้อมูลการตรวจ' />
+											</div>
+		
+											<div class="pull-left">
+												<input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='ย้อนกลับ' />
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</form>
+								</div>
+							</div> <!-- wizard container -->
+						</div>
+					</div> <!-- row -->
+				</div> <!--  big container -->
+				<div class="fixed-plugin">
+					<div class="dropdown open">
+						<a href="index.html" >
+							<i class="fa fa-arrow-circle-o-left fa-3x"> </i>
+						</a>
+					</div>
+				</div>
+			  </div>  
+			</div>
+		</div>
+	</div>
+<!-- Leap Motion Action Tracking -->
+<div>
+	<form action="" method="">
+<!-- LeapTracking 1 -->
+<div style="display:none" id="leap1Track">
+	<!-- Detail 1 -->
+    &nbsp;<button onclick="backLeapMotion1()" class="btn btn-warning btn-fill" ><u>B</u>ack</button>
+	&nbsp;<button id="btn_full1" onclick="toggleFullScreen1();" class="btn btn-info btn-fill"><u>F</u>ull Screen</button><b> |</b>
+	&nbsp;<button class='btn btn-fill btn-default btn-wd' onclick="stop_action1_pas()" id="stop_1action_pas" ><b><u>P</u>assive</b></button> 
+	&nbsp;<button class='btn btn-fill btn-default btn-wd' onclick="stop_action1_act()" id="stop_1action_act"><b><u>A</u>ctive</b></button> <b>|</b>
+	&nbsp;<button class='btn btn-fill btn-success btn-wd' onclick="chart_action_add1()" id="add_action1"><b><u>T</u>racking</b></button><br><br>
+	&nbsp;&nbsp;&nbsp;<label class="radio-inline" style="color:#046645;">
+		<input type="radio" name="handtype1" id="myHandLeft1"> มือซ้าย 
+	</label>&emsp;&nbsp;
+	<b>|</b>&ensp;&ensp;
+	<label class="radio-inline" style="color:#046645;">
+		<input type="radio" name="handtype1" id="myHandRight1"> มือขวา
+	</label>&emsp;<br>
+	<input id="stop1_pas" type="hidden" >
+	<input id="stop1_act" type="hidden" >
+    <div>
+        <form>
+            &ensp;
+            <label class="checkbox-inline">
+              <input type="checkbox" id="degCheck4" onclick="myCheckbox1()"> นิ้วโป้ง-นิ้วชี้
+            </label>&emsp;
+            <label class="checkbox-inline">
+              <input type="checkbox" id="degCheck1" onclick="myCheckbox1()"> นิ้วชี้-นิ้วกลาง
+            </label>&emsp;
+            <label class="checkbox-inline">
+              <input type="checkbox" id="degCheck2" onclick="myCheckbox1()"> นิ้วกลาง-นิ้วนาง
+            </label>&emsp;
+            <label class="checkbox-inline">
+                <input type="checkbox" id="degCheck3" onclick="myCheckbox1()"> นิ้วนาง-นิ้วก้อย
+              </label>&emsp;
+        </form>
+    </div><br>
+	<div class="form-inline">
+		<label class="mb-2 col-sm-12" id="cb_out4" style="display:none">
+			<label for="act_name1_4">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name1_4" name="act_name"  size="20" placeholder="name"></label>&emsp;
+			<label for="act_passivel1_4"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel1_4"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal1_4"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal1_4" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active1_4"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active1_4"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+		</label>
+		<label class="mb-2 col-sm-12" id="cb_out1" style="display:none">
+			<label for="act_name1_1">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name1_1" name="act_name"  size="20" placeholder="name"></label>&emsp;
+			<label for="act_passivel1_1"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel1_1"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal1_1"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal1_1" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active1_1"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active1_1"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+		</label>
+		<label class="mb-2 col-sm-12" id="cb_out2" style="display:none">
+			<label for="act_name1_2">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name1_2" name="act_name"  size="20" placeholder="name"></label>&emsp;
+			<label for="act_passivel1_2"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel1_2"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal1_2"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal1_2" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active1_2"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active1_2"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+		</label>
+		<label class="mb-2 col-sm-12" id="cb_out3" style="display:none">
+			<label for="act_name1_3">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name1_3" name="act_name"  size="20" placeholder="name"></label>&emsp;
+			<label for="act_passivel1_3"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel1_3"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal1_3"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal1_3" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active1_3"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active1_3"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+		</label>	
+	</div>
+    <!-- <div id=hand_type1></div> --> <!-- มือข้างที่ใช้ -->
+    <div id=output_deg4 style="display:none"></div> <!-- นิ้วโป้ง-นิ้วชี้ -->
+    <div id='lth4' style="display:none"></div>
+    <div id=output_deg1 style="display:none"></div> <!-- นิ้วชี้-นิ้วกลาง  -->
+    <div id='lth1' style="display:none"></div>
+    <div id=output_deg2 style="display:none"></div> <!-- นิ้วกลาง-นิ้วนาง -->
+    <div id='lth2' style="display:none"></div>
+    <div id=output_deg3 style="display:none"></div> <!-- นิ้วนาง-นิ้วก้อย -->
+    <div id='lth3' style="display:none"></div>
+</div>
+<!-- LeapTracking 2 -->
+<div style="display:none" id="leap2Track">
+	<!-- Detail 2 -->
+	&nbsp;<button onclick="backLeapMotion2()" class="btn btn-warning btn-fill" ><u>B</u>ack</button>
+	&nbsp;<button id="btn_full2" onclick="toggleFullScreen2();" class="btn btn-info btn-fill"><u>F</u>ull Screen</button> <b>|</b>
+	&nbsp;<button class='btn btn-fill btn-default btn-wd' onclick="stop_action2_pas()" id="stop_2action_pas" ><b><u>P</u>assive</b></button> 
+	&nbsp;<button class='btn btn-fill btn-default btn-wd' onclick="stop_action2_act()" id="stop_2action_act"><b><u>A</u>ctive</b></button> <b>|</b>
+	&nbsp;<button class='btn btn-fill btn-success btn-wd' onclick="chart_action_add2()" id="add_action2"><b><u>T</u>racking</b></button><br><br>
+	&nbsp;&nbsp;&nbsp;<label class="radio-inline" style="color:#046645;">
+		<input type="radio" name="handtype2" id="myHandLeft2"> มือซ้าย 
+	</label>&emsp;&nbsp;
+	<b>|</b>&ensp;&ensp;
+	<label class="radio-inline" style="color:#046645;">
+		<input type="radio" name="handtype2" id="myHandRight2"> มือขวา
+	</label>&emsp;<br>
+	<input id="stop2_pas" type="hidden" >
+	<input id="stop2_act" type="hidden" >
+	<div>
+        <form>
+            &ensp;
+            <label class="checkbox-inline">
+              <input type="checkbox" id="myCheck1" onclick="myCheckbox2()"> นิ้วโป้ง
+            </label>&emsp;
+            <label class="checkbox-inline">
+              <input type="checkbox" id="myCheck2" onclick="myCheckbox2()"> นิ้วชี้
+            </label>&emsp;
+            <label class="checkbox-inline">
+              <input type="checkbox" id="myCheck3" onclick="myCheckbox2()"> นิ้วกลาง
+            </label>&emsp;
+            <label class="checkbox-inline">
+                <input type="checkbox" id="myCheck4" onclick="myCheckbox2()"> นิ้วนาง
+              </label>&emsp;
+              <label class="checkbox-inline">
+                <input type="checkbox" id="myCheck5" onclick="myCheckbox2()"> นิ้วก้อย
+              </label>&emsp;
+        </form>
+    </div>
+	<!-- <div id=hand_type2></div> --> <!-- มือข้างที่ใช้ -->
+	<!-- นิ้วโป้ง -->
+	<div class="form-inline" id="thumb_out" style="display:none">
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_1_1">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_1_1" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_1_1"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_1_1"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_1_1"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_1_1" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_1_1"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_1_1"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_1_2">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_1_2" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_1_2"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_1_2"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_1_2"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_1_2" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_1_2"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_1_2"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+		<div>----------------------------------------------------------------------------------------------------------------------------------</div>
+	</div>
+	<!-- นิ้วชี้ -->
+	<div class="form-inline" id="index_out" style="display:none">
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_2_1">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_2_1" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_2_1"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_2_1"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_2_1"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_2_1" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_2_1"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_2_1"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+		</label>
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_2_2">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_2_2" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_2_2"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_2_2"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_2_2"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_2_2" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_2_2"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_2_2"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_2_3">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_2_3" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_2_3"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_2_3"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_2_3"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_2_3" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_2_3"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_2_3"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+		<div>----------------------------------------------------------------------------------------------------------------------------------</div>
+	</div>
+	<!-- นิ้วกลาง-->
+	<div class="form-inline" id="middle_out" style="display:none">
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_3_1">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_3_1" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_3_1"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_3_1"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_3_1"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_3_1" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_3_1"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_3_1"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_3_2">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_3_2" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_3_2"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_3_2"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_3_2"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_3_2" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_3_2"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_3_2"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_3_3">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_3_3" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_3_3"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_3_3"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_3_3"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_3_3" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_3_3"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_3_3"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+		<div>----------------------------------------------------------------------------------------------------------------------------------</div>
+	</div>
+	<!-- นิ้วนาง -->
+	<div class="form-inline" id="ring_out" style="display:none">
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_4_1">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_4_1" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_4_1"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_4_1"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_4_1"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_4_1" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_4_1"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_4_1"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_4_2">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_4_2" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_4_2"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_4_2"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_4_2"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_4_2" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_4_2"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_4_2"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_4_3">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_4_3" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_4_3"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_4_3"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_4_3"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_4_3" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_4_3"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_4_3"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+		</label>
+		<div>----------------------------------------------------------------------------------------------------------------------------------</div>
+	</div>
+	<!-- นิ้วก้อย -->
+	<div class="form-inline" id="pinky_out" style="display:none">
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_5_1">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_5_1" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_5_1"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_5_1"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_5_1"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_5_1" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_5_1"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_5_1"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_5_2">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_5_2" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_5_2"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_5_2"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_5_2"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_5_2" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_5_2"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_5_2"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+		<label class="mb-2 col-sm-12">
+			<label for="act_name2_5_3">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name2_5_3" name="act_name" size="12" placeholder="name"></label>&emsp;
+			<label for="act_passivel2_5_3"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel2_5_3"  name="act_passivel" maxlength="3" size="1" placeholder="99" style="width:80px;"> °  </label>&emsp;
+			<label for="act_normal2_5_3"> Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal2_5_3" name="act_normal" maxlength="3" size="1" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+			<label for="act_active2_5_3"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active2_5_3"  name="act_active" maxlength="3" size="1" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+		<div>----------------------------------------------------------------------------------------------------------------------------------</div>
+	</div>
+    
+    <!-- นิ้วโป้ง -->
+    <!-- <div id='thumb_deg1' style="display:none"></div>  --><!-- นิ้วโป้ง-Dip  -->
+    <!-- <div id='thumb_deg2' style="display:none"></div> --> <!-- นิ้วโป้ง-Pip -->
+    <!-- <div id='th1' style="display:none"></div> -->
+    <!-- นิ้วชี้ -->
+    <!-- <div id='index_deg1' style="display:none"></div> --> <!-- นิ้วชี้-Dip  -->
+    <!-- <div id='index_deg2' style="display:none"></div>  --><!-- นิ้วชี้-Pip -->
+    <!-- <div id='index_deg3' style="display:none"></div> --> <!-- นิ้วชี้-Mcp -->
+    <!-- <div id='th2' style="display:none"></div> -->
+    <!-- นิ้วกลาง-->
+    <!-- <div id='middle_deg1' style="display:none"></div>  --><!-- นิ้วกลาง-Dip  -->
+    <!-- <div id='middle_deg2' style="display:none"></div>  --><!-- นิ้วกลาง-Pip -->
+    <!-- <div id='middle_deg3' style="display:none"></div> --> <!-- นิ้วกลาง-Mcp -->
+    <!-- <div id='th3' style="display:none"></div> -->
+    <!-- นิ้วนาง -->
+    <!-- <div id='ring_deg1' style="display:none"></div> --> <!-- นิ้วนาง-Dip  -->
+    <!-- <div id='ring_deg2' style="display:none"></div> --> <!-- นิ้วนาง-Pip -->
+    <!-- <div id='ring_deg3' style="display:none"></div> --> <!-- นิ้วนาง-Mcp -->
+    <!-- <div id='th4' style="display:none"></div> -->
+    <!-- นิ้วก้อย -->
+    <!-- <div id='pinky_deg1' style="display:none"></div> --> <!-- นิ้วก้อย-Dip  -->
+    <!-- <div id='pinky_deg2' style="display:none"></div>  --><!-- นิ้วก้อย-Pip -->
+    <!-- <div id='pinky_deg3' style="display:none"></div> --> <!-- นิ้วก้อย-Mcp -->
+    <!-- <div id='th5' style="display:none"></div>  -->
+</div>
+<!-- LeapTracking 3 -->
+<div style="display:none" id="leap3Track">
+	    <!-- Detail 3 -->
+		&nbsp;<button onclick="backLeapMotion3()" class="btn btn-warning btn-fill" ><u>B</u>ack</button>
+		&nbsp;<button id="btn_full3" onclick="toggleFullScreen3();" class="btn btn-info btn-fill"><u>F</u>ull Screen</button>  <b>|</b>
+		&nbsp;<button class='btn btn-fill btn-default btn-wd' onclick="stop_action3_pas()" id="stop_3action_pas" ><b><u>P</u>assive</b></button> 
+		&nbsp;<button class='btn btn-fill btn-default btn-wd' onclick="stop_action3_act()" id="stop_3action_act"><b><u>A</u>ctive</b></button> <b>|</b>
+		<!-- &nbsp;<button class='btn btn-fill btn-default btn-wd' onclick="reset_action_3()" id="reset_action3"><b><u>R</u>set</b></button> <b>|</b> -->
+		&nbsp;<button class='btn btn-fill btn-success btn-wd' onclick="chart_action_add3()" id="add_action3"><b><u>T</u>racking</b></button><br><br>
+		&nbsp;&nbsp;&nbsp;<label class="radio-inline" style="color:#046645;">
+			<input type="radio" name="handtype3" id="myHandLeft3"> มือซ้าย 
+		</label>&emsp;&nbsp;
+		<b>|</b>&ensp;&ensp;
+		<label class="radio-inline" style="color:#046645;">
+			<input type="radio" name="handtype3" id="myHandRight3"> มือขวา
+		</label>&emsp;
+		<input id="stop3_pas" type="hidden" >
+		<input id="stop3_act" type="hidden" >
+		<div>
+			<form>
+				&ensp;
+				<label class="radio-inline" style="color:#66348B;">
+					<input type="radio" name="optradio1"  id="rCheckFlexion" onclick="myRadio1()"> Flexion
+				  </label>&emsp;
+				  <b>|</b>&ensp;&ensp;
+				  <label class="radio-inline" style="color:#DE4097;">
+					<input type="radio" name="optradio1"  id="rCheckExtension" onclick="myRadio1()"> Extension
+				  </label>&emsp;
+			  </form>
+		</div><br>
+		<div class="form-inline">
+			<label class="mb-2 col-sm-12">
+				<label for="act_name3">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name3" name="act_name" size="15" placeholder="name"></label>&emsp;
+				<label for="act_passivel3"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel3"  name="act_passivel" maxlength="3" size="4" placeholder="99" style="width:80px;"> °  </label>&emsp;
+				<label for="act_normal3">Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal3" name="act_normal" maxlength="3" size="4" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal"> ° </label>&emsp;
+				<label for="act_active3"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active3"  name="act_active" maxlength="3" size="4" placeholder="99" style="width:80px;"> ° </label>&emsp;
+			</label>
+		</div>
+			<!-- <div id="hand_type3"></div> --> <!-- มือข้างที่ใช้ -->
+			<div id="flexion_deg" class="flex_exten_deg" style="display:none"></div> <!-- Flexion -->
+			<!-- <div id="flexion_max" class="flex_exten_deg" style="display:none"></div> 
+			<div id="flexion_min" class="flex_exten_deg" style="display:none"></div>  -->
+			<div id="extension_deg" class="extension_deg" style="display:none"></div> <!-- Extension -->
+			<!-- <div id="extension_max" class="extension_deg" style="display:none"></div> 
+			<div id="extension_min" class="extension_deg" style="display:none"></div>  -->
+			<!-- <div id="get_flexion_deg" style="display:none"></div>
+			<div id="get_extension_deg" style="display:none"></div> -->
+</div>
+<!-- LeapTracking 4 -->
+<div style="display:none" id="leap4Track">
+	<!-- Detail 4 -->
+	&nbsp;<button onclick="backLeapMotion4()" class="btn btn-warning btn-fill" ><u>B</u>ack</button>
+	&nbsp;<button id="btn_full4" onclick="toggleFullScreen4();" class="btn btn-info btn-fill"><u>F</u>ull Screen</button> <b>|</b>
+	&nbsp;<button class='btn btn-fill btn-default btn-wd' onclick="stop_action4_pas()" id="stop_4action_pas" ><b><u>P</u>assive</b></button> 
+	&nbsp;<button class='btn btn-fill btn-default btn-wd' onclick="stop_action4_act()" id="stop_4action_act"><b><u>A</u>ctive</b></button> <b>|</b>
+	&nbsp;<button class='btn btn-fill btn-success btn-wd' onclick="chart_action_add4()" id="add_action4"><b><u>T</u>racking</b></button><br><br>
+	&nbsp;&nbsp;&nbsp;<label class="radio-inline" style="color:#046645;">
+		<input type="radio" name="handtype4" id="myHandLeft4"> มือซ้าย 
+	</label>&ensp;
+	<b>|</b>&ensp;&ensp;
+	<label class="radio-inline" style="color:#046645;">
+		<input type="radio" name="handtype4" id="myHandRight4"> มือขวา
+	</label>&emsp;
+	<input id="stop4_pas" type="hidden" >
+	<input id="stop4_act" type="hidden" >
+    <div>
+        <form>
+            &ensp;
+            <label class="radio-inline" style="color:#66348B;">
+                <input type="radio" name="optradio2" id="rCheckRadial" onclick="myRadio2()"> Radial
+              </label>&emsp;
+              <b>|</b>&ensp;&ensp;
+              <label class="radio-inline" style="color:#DE4097;">
+                <input type="radio" name="optradio2" id="rCheckUlnar" onclick="myRadio2()"> Ulnar deviation
+              </label>&emsp;
+        </form>
+    </div><br>
+	<div class="form-inline">
+		<label class="mb-2 col-sm-12">
+			<label for="act_name4">Action : <input type="text" class="form-control mb-2 mr-sm-2" id="act_name4" name="act_name" size="15" placeholder="name"></label>&emsp;
+			<label for="act_passivel4"> Passive : <input type="number" class="form-control mb-2 mr-sm-2" id="act_passivel4"  name="act_passivel" maxlength="3" size="4" placeholder="99" style="width:80px;">°  </label>&emsp;
+			<label for="act_normal4">Normal : <input type="number" class="form-control mb-2 mr-sm-2" id="act_normal4" name="act_normal" maxlength="3" size="4" placeholder="99" style="width:80px;" required title="กรุณากรอก : Normal">° </label>&emsp;	
+			<label for="act_active4"> Active : <input type="number" class="form-control mb-2 mr-sm-2" id="act_active4"  name="act_active" maxlength="3" size="4" placeholder="99" style="width:80px;"> ° </label>&emsp;
+		</label>
+	</div>
+    <!-- <div id="hand_type4"></div> --> <!-- มือข้างที่ใช้ -->
+    <div id="radial_deg" style="display:none"></div> <!-- Radial -->
+	<!-- <div id="radial_max" class="flex_exten_deg" style="display:none"></div> 
+	<div id="radial_min" class="flex_exten_deg" style="display:none"></div>  -->
+    <div id="ulnar_deg" style="display:none"></div> <!-- Ulnar deviation -->
+	<!-- <div id="ulnar_max" class="extension_deg" style="display:none"></div> 
+	<div id="ulnar_min" class="extension_deg" style="display:none"></div>  -->
+	<!-- <div id="get_radial_deg" style="display:none"></div>
+	<div id="get_ulnar_deg" style="display:none"></div> -->
+</div>
+<!-- End of Leap Motion Tracking -->
+	</form>
+</div>
+</section>
+
+<script>
+	var charts = [];
+	var dataAll = [];
+	$(document).ready(function(){
+		var upload = document.getElementById('fileInput');
+		var test = []
+		if (upload){
+		upload.addEventListener('change', function() {
+		if (upload.files.length > 0) 
+		{
+			var reader = new FileReader();
+			reader.addEventListener('load', function() {
+			var result = JSON.parse(reader.result);
+			console.log(result);
+			if(!result[0] || !result[0].patients_info ||  !result){
+				dataAll["patients_info"] = result;
+				document.getElementById("physiotherapist_number1").innerHTML =  result.physiotherapist_number;
+				document.getElementById("patient_number1").innerHTML =  result.patient_number;
+				document.getElementById("f_name1").innerHTML =  result.f_name;
+				document.getElementById("l_name1").innerHTML =  result.l_name;
+				document.getElementById("gender1").innerHTML =  result.gender;
+				document.getElementById("birthday1").innerHTML =  result.birthday;
+				document.getElementById("pt_diagnosis1").innerHTML =  result.pt_diagnosis;
+			}else{
+				dataAll["patients_info"] = result[0].patients_info;
+				console.log("มีข้อมูล patients_info แล้ว");
+				document.getElementById("physiotherapist_number1").innerHTML =  result[0].patients_info.physiotherapist_number;
+				document.getElementById("patient_number1").innerHTML =  result[0].patients_info.patient_number;
+				document.getElementById("f_name1").innerHTML =  result[0].patients_info.f_name;
+				document.getElementById("l_name1").innerHTML =  result[0].patients_info.l_name;
+				document.getElementById("gender1").innerHTML =  result[0].patients_info.gender;
+				document.getElementById("birthday1").innerHTML =  result[0].patients_info.birthday;
+				document.getElementById("pt_diagnosis1").innerHTML =  result[0].patients_info.pt_diagnosis;
+			}
+			if(!result[0] || !result[0].patients_info ||  !result){
+				dataAll["data_soap"] = [];
+			}else{
+				dataAll["data_soap"] = result[0].data_soap;
+				console.log("มีข้อมูล data_soap แล้ว"); 
+			}	
+			if(!result[0] || !result[0].patients_info ||  !result){
+				charts = [];
+			}else{
+				charts = result[0].charts;
+				console.log("มีข้อมูล charts แล้ว"); 
+			}
+			console.log(dataAll);
+			});
+			reader.readAsText(upload.files[0]);
+		}
+		});
+		}
+	});
+	
+	let date_action = new Date().toLocaleDateString('en-GB', {day : 'numeric', month : 'numeric', year : 'numeric'});
+	var countTable = 0;
+		function FetchAll() {
+			// console.log(charts);
+			
+			
+			let data10 = '';
+			console.log(charts)
+			if (countTable == 0){
+				
+				// if(charts.length == 1){
+					if (charts.length > 0) {
+		
+						for (i = 0; i < charts.length; i++) {
+							data10 += '<tr>';
+							data10 += '<td>' + charts[i].action + '</td>' ;
+							data10 += '<td>' + charts[i].normal + "°" + '</td>';
+							data10 += '<td>' + charts[i].arom + "°" + '</td>';
+							data10 += '<td>' + charts[i].prom + "°" + '</td>';
+							data10 += '<td>' + charts[i].date  + '</td>';
+							data10 += '</tr>';
+						}
+						$("#all_action").append(data10);
+						//$(data10).appendTo("#all_action");	
+						countTable =  1;
+					}
+					
+			}else{
+					let data11 = '';
+					//alert(5555)
+					$("#actTableAll").remove();
+
+					if (charts.length > 0) {
+						data11 += '<table id="actTableAll" class="table table-striped">';
+						data11 += '<thead>';
+							data11 += '<tr>'
+								data11 += '<th style="text-align:center;">Action</th>';
+								data11 += '<th style="text-align:center;">Normal</th>';
+								data11 += '<th style="text-align:center;">Passive</th>';
+								data11 += '<th style="text-align:center;">Active</th>';
+							data11 += '</tr>';
+						data11 += '</thead>';
+						data11 += '<tbody id="tadata">';
+						for (i = 0; i < charts.length; i++) {
+							data11 += '<tr>';
+							data11 += '<td>' + charts[i].action + '</td>' ;
+							data11 += '<td>' + charts[i].normal + "°" + '</td>';
+							data11 += '<td>' + charts[i].arom + "°" +' </td>';
+							data11 += '<td>' + charts[i].prom + "°" +' </td>';
+							data11 += '<td>' + charts[i].date  + '</td>';
+							data11 += '</tr>';
+						}
+						data11 += '</tbody>';
+						data11 += '</table>';
+						//data10 += '<tbody >';
+						//alert(data11);
+						$("#all_action_2").append(data11);
+						
+						
+					}
+				}
+			
+		};
+
+	// Action 1
+	function chart_action_add1() {
+		
+	if (document.getElementById("degCheck1").checked == true) {
+			charts.push({
+			"action":act_name1_1.value,        
+		 	"normal":parseInt(act_normal1_1.value),
+		  	"arom":parseInt(act_active1_1.value),
+		   	"prom":parseInt(act_passivel1_1.value),
+			"date":date_action
+		})
+	}
+	if (document.getElementById("degCheck2").checked == true) {
+			charts.push({
+			"action":act_name1_2.value,        
+		 	"normal":parseInt(act_normal1_2.value),
+		  	"arom":parseInt(act_active1_2.value),
+		   	"prom":parseInt(act_passivel1_2.value),
+			"date":date_action
+		})
+	}
+	if (document.getElementById("degCheck3").checked == true) {
+			charts.push({
+			"action":act_name1_3.value,        
+		 	"normal":parseInt(act_normal1_3.value),
+		  	"arom":parseInt(act_active1_3.value),
+		   	"prom":parseInt(act_passivel1_3.value),
+			"date":date_action
+		})
+	}
+	if (document.getElementById("degCheck4").checked == true) {
+			charts.push({
+			"action":act_name1_4.value,        
+		 	"normal":parseInt(act_normal1_4.value),
+		  	"arom":parseInt(act_active1_4.value),
+		   	"prom":parseInt(act_passivel1_4.value),
+			"date":date_action
+		})
+	}
+		// const results1 = document.querySelector('.results_act pre');
+		// results1.innerText = JSON.stringify(charts, null, 2);
+		// console.log(charts);
+		FetchAll(charts);
+		alert("บันทึกข้อมูลแล้ว");
+			if (cy1.style.display === "none") {
+				cx1.style.display = "none";
+				cy1.style.display = "block";
+				document.exitFullscreen()
+			} else {	
+				cx1.style.display = "block";
+				cy1.style.display = "none";
+				document.exitFullscreen()
+			}	
+	}
+
+	// Action 2
+	function chart_action_add2() {
+
+	if (document.getElementById("myCheck1").checked == true) {
+			charts.push({
+			"action":act_name2_1_1.value,        
+		 	"normal":parseInt(act_normal2_1_1.value),
+		  	"arom":parseInt(act_active2_1_1.value),
+		   	"prom":parseInt(act_passivel2_1_1.value),
+			"date":date_action
+		},{
+			"action":act_name2_1_2.value,        
+		 	"normal":parseInt(act_normal2_1_2.value),
+		  	"arom":parseInt(act_active2_1_2.value),
+		   	"prom":parseInt(act_passivel2_1_2.value),
+			"date":date_action
+		})
+	}
+	if (document.getElementById("myCheck2").checked == true) {
+			charts.push({
+			"action":act_name2_2_1.value,        
+		 	"normal":parseInt(act_normal2_2_1.value),
+		  	"arom":parseInt(act_active2_2_1.value),
+		   	"prom":parseInt(act_passivel2_2_1.value),
+			"date":date_action
+		},{
+			"action":act_name2_2_2.value,        
+		 	"normal":parseInt(act_normal2_2_2.value),
+		  	"arom":parseInt(act_active2_2_2.value),
+		   	"prom":parseInt(act_passivel2_2_2.value),
+			"date":date_action
+		},{
+			"action":act_name2_2_3.value,        
+		 	"normal":parseInt(act_normal2_2_3.value),
+		  	"arom":parseInt(act_active2_2_3.value),
+		   	"prom":parseInt(act_passivel2_2_3.value),
+			"date":date_action
+		})
+	}
+	if (document.getElementById("myCheck3").checked == true) {
+		charts.push({
+			"action":act_name2_3_1.value,        
+		 	"normal":parseInt(act_normal2_3_1.value),
+		  	"arom":parseInt(act_active2_3_1.value),
+		   	"prom":parseInt(act_passivel2_3_1.value),
+			"date":date_action
+		},{
+			"action":act_name2_3_2.value,        
+		 	"normal":parseInt(act_normal2_3_2.value),
+		  	"arom":parseInt(act_active2_3_2.value),
+		   	"prom":parseInt(act_passivel2_3_2.value),
+			"date":date_action
+		},{
+			"action":act_name2_3_3.value,        
+		 	"normal":parseInt(act_normal2_3_3.value),
+		  	"arom":parseInt(act_active2_3_3.value),
+		   	"prom":parseInt(act_passivel2_3_3.value),
+			"date":date_action
+		})
+	}
+	if (document.getElementById("myCheck4").checked == true) {
+		charts.push({
+			"action":act_name2_4_1.value,        
+		 	"normal":parseInt(act_normal2_4_1.value),
+		  	"arom":parseInt(act_active2_4_1.value),
+		   	"prom":parseInt(act_passivel2_4_1.value),
+			"date":date_action
+		},{
+			"action":act_name2_4_2.value,        
+		 	"normal":parseInt(act_normal2_4_2.value),
+		  	"arom":parseInt(act_active2_4_2.value),
+		   	"prom":parseInt(act_passivel2_4_2.value),
+			"date":date_action
+		},{
+			"action":act_name2_4_3.value,        
+		 	"normal":parseInt(act_normal2_4_3.value),
+		  	"arom":parseInt(act_active2_4_3.value),
+		   	"prom":parseInt(act_passivel2_4_3.value),
+			"date":date_action
+		})
+	}
+	if (document.getElementById("myCheck5").checked == true) {
+		charts.push({
+			"action":act_name2_5_1.value,        
+		 	"normal":parseInt(act_normal2_5_1.value),
+		  	"arom":parseInt(act_active2_5_1.value),
+		   	"prom":parseInt(act_passivel2_5_1.value),
+			"date":date_action
+		},{
+			"action":act_name2_5_2.value,        
+		 	"normal":parseInt(act_normal2_5_2.value),
+		  	"arom":parseInt(act_active2_5_2.value),
+		   	"prom":parseInt(act_passivel2_5_2.value),
+			"date":date_action
+		},{
+			"action":act_name2_5_3.value,        
+		 	"normal":parseInt(act_normal2_5_3.value),
+		  	"arom":parseInt(act_active2_5_3.value),
+		   	"prom":parseInt(act_passivel2_5_3.value),
+			"date":date_action
+		})
+	}
+
+		// console.log(charts);
+		// const results2 = document.querySelector('.results_act pre');
+		// results2.innerText = JSON.stringify(charts, null, 2);
+		FetchAll(charts);
+		alert("บันทึกข้อมูลแล้ว");
+			if (cy2.style.display === "none") {
+				cx2.style.display = "none";
+				cy2.style.display = "block";
+				document.exitFullscreen()
+			} else {	
+				cx2.style.display = "block";
+				cy2.style.display = "none";
+				document.exitFullscreen()
+		}
+	}
+
+	// Action 3
+	function chart_action_add3() {
+		if (document.getElementById("rCheckFlexion").checked == true) {
+			charts.push({
+			"action":act_name3.value,        
+		 	"normal":parseInt(act_normal3.value),
+		  	"arom":parseInt(act_active3.value),
+		   	"prom":parseInt(act_passivel3.value),
+			"date":date_action
+		})
+		} else {
+			charts.push({
+			"action":act_name3.value,        
+		 	"normal":parseInt(act_normal3.value),
+		  	"arom":parseInt(act_active3.value),
+		   	"prom":parseInt(act_passivel3.value),
+			"date":date_action
+		})
+		}
+		// console.log(charts);
+		// const results3 = document.querySelector('.results_act pre');
+		// results3.innerText = JSON.stringify(charts, null, 2);
+		FetchAll(charts);
+		alert("บันทึกข้อมูลแล้ว");
+			if (cy3.style.display === "none") {
+				cx3.style.display = "none";
+				cy3.style.display = "block";
+				document.exitFullscreen()
+			} else {	
+				cx3.style.display = "block";
+				cy3.style.display = "none";
+				document.exitFullscreen()
+		}
+	}
+
+	// Action 4
+	function chart_action_add4() {
+		if (document.getElementById("rCheckRadial").checked == true) {
+			charts.push({
+			"action":act_name4.value,        
+		 	"normal":parseInt(act_normal4.value),
+		  	"arom":parseInt(act_active4.value),
+		   	"prom":parseInt(act_passivel4.value),
+			"date":date_action
+		})
+		} else {
+			charts.push({
+			"action":act_name4.value,        
+		 	"normal":parseInt(act_normal4.value),
+		  	"arom":parseInt(act_active4.value),
+		   	"prom":parseInt(act_passivel4.value),
+			"date":date_action
+		})
+		}
+		// console.log(charts);
+		// const results4 = document.querySelector('.results_act pre');
+		// results4.innerText = JSON.stringify(charts, null, 2);
+		FetchAll(charts);
+		alert("บันทึกข้อมูลแล้ว");
+			if (cy4.style.display === "none") {
+				cx4.style.display = "none";
+				cy4.style.display = "block";
+				document.exitFullscreen()
+			} else {	
+				cx4.style.display = "block";
+				cy4.style.display = "none";
+				document.exitFullscreen()
+		}
+	}
+
+	function download1(test, result){
+		console.log(test);
+		console.log(charts);
+		let date_treatment = new Date().toLocaleDateString('en-GB', {day : 'numeric', month : 'numeric', year : 'numeric'});
+		let hr = document.getElementById('hr').value;
+		let bp_mm = document.getElementById('bp_mm').value;
+		let bp_hg = document.getElementById('bp_hg').value;
+		let rr = document.getElementById('rr').value;
+		let observation_inspection = document.getElementById('observation_inspection').value;
+		let aggravating_factor = document.getElementById('aggravating_factor').value;
+		let easing_factor = document.getElementById('easing_factor').value;
+		let a_m = document.getElementById('a_m').value;
+		let p_m = document.getElementById('p_m').value;
+		let night = document.getElementById('night').value;
+		let pt_interpret = document.getElementById('pt_interpret').value;
+		let analyses = document.getElementById('analyses').value;
+		let precaution = document.getElementById('precaution').value;
+		let treatment = document.getElementById('treatment').value;
+		let examination_next = document.getElementById('examination_next').value;
+
+		dataAll["data_soap"].push({"date_treatment":date_treatment,
+								"hr":hr,
+								"bp_mm":bp_mm,
+								"bp_hg":bp_hg,
+								"rr":rr,
+								"observation_inspection":observation_inspection,
+								"aggravating_factor":aggravating_factor,
+								"easing_factor":easing_factor,
+								"a_m":a_m,
+								"p_m":p_m,
+								"night":night,
+								"pt_interpret":pt_interpret,
+								"analyses":analyses,
+								"precaution":precaution,
+								"treatment":treatment,
+								"examination_next":examination_next});
+		
+		var dataStr;
+		dataStr = "data:appication/json;charset=utf-8," + encodeURIComponent(JSON.stringify(
+				[{"patients_info":dataAll.patients_info,"data_soap":dataAll.data_soap,"charts":charts}]
+			));
+		var downloadAnchorNode = document.createElement('a');
+		downloadAnchorNode.setAttribute("href",     dataStr);
+		downloadAnchorNode.setAttribute("download", dataAll.patients_info.patient_number +"-"+ dataAll.patients_info.pt_diagnosis + ".json");
+
+		document.body.appendChild(downloadAnchorNode); 
+		downloadAnchorNode.click();
+		downloadAnchorNode.remove();
+		Swal.fire({
+			text: 'ดาวน์โหลดข้อมูลผู้ป่วยเรียบร้อย',
+			icon: 'success',
+			confirmButtonText: 'ตกลง',
+		}).then((result) => {
+			location.assign('index.html');
+		});
+	}
+</script>
+<script>
+	function handleFormSubmit(event) {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        const formJSON = Object.fromEntries(data.entries());
+        // const results = document.querySelector('.results pre');
+    }
+    const form = document.querySelector('.contact-form');
+    form.addEventListener('submit', handleFormSubmit);
+
+    function download(physiotherapist_number, patient_number, f_name, l_name, gender, birthday, occupation, chief_compalaint, pt_diagnosis, past_history, underlying_disease, congenital_disease_name, history_illness){
+    	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(
+			{
+				physiotherapist_number:physiotherapist_number,
+				patient_number:patient_number,
+				f_name:f_name,
+				l_name:l_name,
+				gender:gender,
+				birthday:birthday,
+				occupation:occupation,
+				chief_compalaint:chief_compalaint,
+				pt_diagnosis:pt_diagnosis,
+				past_history:past_history,
+				underlying_disease:underlying_disease,
+				congenital_disease_name:congenital_disease_name,
+				history_illness:history_illness
+			}
+		));
+    	var downloadAnchorNode = document.createElement('a');
+    	downloadAnchorNode.setAttribute("href",     dataStr);
+    	downloadAnchorNode.setAttribute("download", patient_number + ".json");
+
+    	document.body.appendChild(downloadAnchorNode); 
+    	downloadAnchorNode.click();
+    	downloadAnchorNode.remove();
+		Swal.fire({
+            text: 'ดาวน์โหลดข้อมูลผู้ป่วยเรียบร้อย',
+            icon: 'success',
+            confirmButtonText: 'ตกลง',
+        }).then((result) => {
+            location.assign('index.html');
+        });
+    }
+</script>
+<script>
+		var history_illness =[];
+		function history_illness_add() {
+			history_illness.push({date_present:date_present.value, present_history:present_history.value})
+			console.log(history_illness)
+			var x = document.getElementById("past_history6").value;
+			document.getElementById('v_no').value = x;
+		}
+		function history_illness_delete() {
+			history_illness.pop();
+			console.log(history_illness)
+		}
+		const addBtn = document.querySelector('#add');
+		const date_present = document.querySelector('#date_present');
+		const present_history = document.querySelector('#present_history');
+		const notes = document.querySelector('.notes');
+
+		addBtn.addEventListener('click',(e)=>{
+    	const box = document.createElement('div');
+    	box.className ='box';
+    	const text1 = document.createElement('p');
+		const text2 = document.createElement('p');
+    	const closeBtn = document.createElement('button');
+    	notes.appendChild(box);
+    	box.appendChild(text1);
+		box.appendChild(text2);
+    	box.appendChild(closeBtn);
+    	closeBtn.addEventListener('click',()=>{
+        box.remove();
+    	})
+    	text1.innerHTML = date_present.value;
+		text2.innerHTML = present_history.value;
+		});
+		document.getElementById("download-bth").addEventListener("click", function(){
+                var physiotherapist_number = document.getElementById("physiotherapist_number").value;
+                var patient_number = document.getElementById("patient_number").value;
+				var f_name = document.getElementById("f_name").value;
+				var l_name = document.getElementById("l_name").value;
+				var gender = document.getElementById("gender").value;
+				var birthday = document.getElementById("birthday").value;
+				var occupation = document.getElementById("occupation").value;
+				var chief_compalaint = document.getElementById("chief_compalaint").value;
+				var pt_diagnosis = document.getElementById("pt_diagnosis").value;
+				var past_history = [];
+					$.each($("input[name='past_history']:checked"), function(){
+                		past_history.push($(this).val());
+            		});
+				var underlying_disease = document.getElementById("ud_no").value;
+				var congenital_disease_name = document.getElementById("congenital_disease_name").value;
+            download(physiotherapist_number, patient_number, f_name, l_name, gender, birthday, occupation, chief_compalaint, pt_diagnosis, past_history, underlying_disease, congenital_disease_name, history_illness);
+        }, false);
+</script>
+<script>
+		function pastmoreCheck() {
+			if (document.getElementById('v_no').checked) {
+				document.getElementById("pastmore").style.display = "block"
+			} else {
+				document.getElementById("pastmore").style.display = "none";
+			}
+		}
+</script>    
+<script>
+		function udCheck() {
+			if (document.getElementById('ud_yes').checked) {
+				document.getElementById('udCheck').style.display = 'block';
+			}
+			else document.getElementById('udCheck').style.display = 'none';
+		}
+</script>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Leap Motion Script +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<script>
+	// --------------------------------- Distance between fingers ------------------------------------------------------------
+	 function myCheckbox1() {
+            // เส้นวรรค
+            var lth4_check = document.getElementById('lth4');
+            var lth1_check = document.getElementById('lth1');
+            var lth2_check = document.getElementById('lth2');
+            var lth3_check = document.getElementById('lth3');
+
+            // นิ้วโป้ง-นิ้วชี้
+            var checkBox4 = document.getElementById("degCheck4");
+            var output_deg4 = document.getElementById("output_deg4");
+			var cb_out4 = document.getElementById("cb_out4");
+            if (checkBox4.checked == true) {
+                output_deg4.style.display = "block";
+				cb_out4.style.display = "block";
+                lth4_check.style.display = "block";
+            } else {
+                output_deg4.style.display = "none";
+				cb_out4.style.display = "none";
+                lth4_check.style.display = "none";
+            }
+
+            // นิ้วชี้-นิ้วกลาง
+            var checkBox1 = document.getElementById("degCheck1");
+            var output_deg1 = document.getElementById("output_deg1");
+			var cb_out1 = document.getElementById("cb_out1");
+            if (checkBox1.checked == true) {
+                output_deg1.style.display = "block";
+				cb_out1.style.display = "block";
+                lth1_check.style.display = "block";
+            } else {
+                output_deg1.style.display = "none";
+				cb_out1.style.display = "none";
+                lth1_check.style.display = "none";
+            }
+
+            // นิ้วกลาง-นิ้วนาง
+            var checkBox2 = document.getElementById("degCheck2");
+            var output_deg2 = document.getElementById("output_deg2");
+			var cb_out2 = document.getElementById("cb_out2");
+            if (checkBox2.checked == true) {
+                output_deg2.style.display = "block";
+				cb_out2.style.display = "block";
+                lth2_check.style.display = "block";
+            } else {
+                output_deg2.style.display = "none";
+				cb_out2.style.display = "none";
+                lth2_check.style.display = "none";
+            }
+
+            // นิ้วนาง-นิ้วก้อย
+            var checkBox3 = document.getElementById("degCheck3");
+            var output_deg3 = document.getElementById("output_deg3");
+			var cb_out3 = document.getElementById("cb_out3");
+            if (checkBox3.checked == true) {
+                output_deg3.style.display = "block";
+				cb_out3.style.display = "block";
+                lth3_check.style.display = "block";
+            } else {
+                output_deg3.style.display = "none";
+				cb_out3.style.display = "none";
+                lth3_check.style.display = "none";
+            }
+        }
+	// --------------------------------- Fold fingers ------------------------------------------------------------------------
+	function myCheckbox2() {
+            // เส้นวรรค
+            // var th1_check = document.getElementById('th1');
+            // var th2_check = document.getElementById('th2');
+            // var th3_check = document.getElementById('th3');
+            // var th4_check = document.getElementById('th4');
+            // var th5_check = document.getElementById('th5');
+			
+            // // นิ้วโป้ง - old version
+            // var checkBox1 = document.getElementById("myCheck1");
+            // var thumb_dip = document.getElementById("thumb_deg1");
+            // var thumb_pip = document.getElementById("thumb_deg2");
+			// var thumb_out = document.getElementById("thumb_out");
+            // if (checkBox1.checked == true) {
+            //     thumb_dip.style.display = "block";
+            //     thumb_pip.style.display = "block";
+            //     th1_check.style.display = "block";
+            // } else {
+            //     thumb_dip.style.display = "none";
+            //     thumb_pip.style.display = "none";
+            //     th1_check.style.display = "none";
+            // }
+
+			// นิ้วโป้ง
+            var checkBox1 = document.getElementById("myCheck1");
+			var thumb_out = document.getElementById("thumb_out");
+            if (checkBox1.checked == true) {
+            	thumb_out.style.display = "block";
+            } else {
+				thumb_out.style.display = "none";
+            }
+
+            // นิ้วชี้
+            var checkBox2 = document.getElementById("myCheck2");
+			var index_out = document.getElementById("index_out");
+            if (checkBox2.checked == true) {
+                index_out.style.display = "block";
+            } else {
+				index_out.style.display = "none";
+            }
+
+            // นิ้วกลาง
+            var checkBox3 = document.getElementById("myCheck3");
+			var middle_out = document.getElementById("middle_out");
+            if (checkBox3.checked == true) {
+                middle_out.style.display = "block";
+            } else {
+                middle_out.style.display = "none";
+            }
+
+            // นิ้วนาง
+            var checkBox4 = document.getElementById("myCheck4");
+			var ring_out = document.getElementById("ring_out");
+            if (checkBox4.checked == true) {
+				ring_out.style.display = "block";
+            } else {
+				ring_out.style.display = "none";
+            }
+
+            // นิ้วก้อย
+            var checkBox5 = document.getElementById("myCheck5");
+			var pinky_out = document.getElementById("pinky_out");
+            if (checkBox5.checked == true) {
+				pinky_out.style.display = "block";
+            } else {
+                pinky_out.style.display = "none";
+            }
+        }	
+</script>
+
+<script>
+	// --------------------------------- Flexion/Extension -------------------------------------------------------------------
+	function myRadio1() {
+		// Flexion
+		var rCheckFlexion = document.getElementById("rCheckFlexion");
+		var flexion_deg = document.getElementById("flexion_deg");
+		// var flexion_max = document.getElementById("flexion_max");
+		// var flexion_min = document.getElementById("flexion_min");
+		if (rCheckFlexion.checked == true) {
+			flexion_deg.style.display = "block";
+			// flexion_max.style.display = "block";
+			// flexion_min.style.display = "block";
+		} else {
+			flexion_deg.style.display = "none";
+			// flexion_max.style.display = "none";
+			// flexion_min.style.display = "none";
+		}
+
+		// Extension
+		var rCheckExtension = document.getElementById("rCheckExtension");
+		var extension_deg = document.getElementById("extension_deg");
+		// var extension_max = document.getElementById("extension_max");
+		// var extension_min = document.getElementById("extension_min");
+		if (rCheckExtension.checked == true) {
+			extension_deg.style.display = "block";  
+			// extension_max.style.display = "block"; 
+			// extension_min.style.display = "block"; 
+		} else {
+			extension_deg.style.display = "none";    
+			// extension_max.style.display = "none";
+			// extension_min.style.display = "none";
+		}
+	}
+
+	// --------------------------------- Radial/Ulnar deviation -------------------------------------------------------------------
+	function myRadio2() {
+        // Radial
+        var rCheckRadial = document.getElementById("rCheckRadial");
+        var radial_deg = document.getElementById("radial_deg");
+		// var radial_max = document.getElementById("radial_max");
+		// var radial_min = document.getElementById("radial_min");
+        if (rCheckRadial.checked == true) {
+             radial_deg.style.display = "block";
+			//  radial_max.style.display = "block";
+			//  radial_min.style.display = "block";
+        } else {
+            radial_deg.style.display = "none";
+			// radial_max.style.display = "none";
+			// radial_min.style.display = "none";
+        }
+
+        // Ulnar deviation
+        var rCheckUlnar = document.getElementById("rCheckUlnar");
+        var ulnar_deg = document.getElementById("ulnar_deg");
+		// var ulnar_max = document.getElementById("ulnar_max");
+		// var ulnar_min = document.getElementById("ulnar_min");
+        if (rCheckUlnar.checked == true) {
+            ulnar_deg.style.display = "block"; 
+			// ulnar_max.style.display = "block";
+			// ulnar_min.style.display = "block";
+        } else {
+            ulnar_deg.style.display = "none";  
+			// ulnar_max.style.display = "none";  
+			// ulnar_min.style.display = "none";    
+        }
+    }
+</script>
+
+<script>
+	window.TO_DEG1 = 180 / Math.PI; //Distance between fingers
+	window.TO_DEG2 = 180 / Math.PI; //Fold fingers
+    window.TO_DEG3 = 90 / Math.PI; // Fold fingers ใช้กับ Mcp
+	window.TO_DEG3 = -90;  // Flextion กับ Radial
+	window.TO_DEG4 = 90;  // Extension กับ Ulnar
+
+	// action 1
+	var max_deg1_1_1 = -360; var max_deg1_1_2 = -360; 
+	var max_deg1_2_1 = -360; var max_deg1_2_2 = -360; 
+	var max_deg1_3_1 = -360; var max_deg1_3_2 = -360; 
+	var max_deg1_4_1 = -360; var max_deg1_4_2 = -360;
+	// action 2
+	var max_deg2_1_1_1 = -360; var max_deg2_1_2_1 = -360;
+	var max_deg2_2_1_1 = -360; var max_deg2_2_2_1 = -360; var max_deg2_2_3_1 = -360;
+	var max_deg2_3_1_1 = -360; var max_deg2_3_2_1 = -360; var max_deg2_3_3_1 = -360;
+	var max_deg2_4_1_1 = -360; var max_deg2_4_2_1 = -360; var max_deg2_4_3_1 = -360;
+	var max_deg2_5_1_1 = -360; var max_deg2_5_2_1 = -360; var max_deg2_5_3_1 = -360;
+	var max_deg2_1_1_2 = -360; var max_deg2_1_2_2 = -360;
+	var max_deg2_2_1_2 = -360; var max_deg2_2_2_2 = -360; var max_deg2_2_3_2 = -360;
+	var max_deg2_3_1_2 = -360; var max_deg2_3_2_2 = -360; var max_deg2_3_3_2 = -360;
+	var max_deg2_4_1_2 = -360; var max_deg2_4_2_2 = -360; var max_deg2_4_3_2 = -360;
+	var max_deg2_5_1_2 = -360; var max_deg2_5_2_2 = -360; var max_deg2_5_3_2 = -360;
+	// action 3
+	var max_deg3_1_1 = -360; var max_deg3_1_2 = -360; var max_deg3_2_1 = -360; var max_deg3_2_2 = -360;
+	// action 4
+	var max_deg4_1_1 = -360; var max_deg4_1_2 = -360; var max_deg4_2_1 = -360; var max_deg4_2_2 = -360;
+	// var min_deg3_1 = 360; var min_deg3_2 = 360; var min_deg4_1 = 360; var min_deg4_2 = 360;
+	var def_stop_pas = 1;
+	var def_stop_act = 1;
+
+	// ------------------------------------------------------ Distance between fingers ------------------------------------------------
+	function stop_action1_pas(){
+		if (document.getElementById("stop1_pas").value = def_stop_pas){
+			document.getElementById("stop1_pas").value = 1;
+			def_stop_pas = 0;
+			stop_1action_pas.innerHTML = "<span style='color:#fff022;'>New <u>P</u>assive</span>";  
+			max_deg1_1_1 = -360;
+			max_deg1_2_1 = -360;
+			max_deg1_3_1 = -360;
+			max_deg1_4_1 = -360;
+		} else {
+			document.getElementById("stop1_pas").value = 0;
+			def_stop_pas = 1;
+			stop_1action_pas.innerHTML = "<b><u>P</u>assive</b>";   
+			document.getElementById("act_passivel1_1").value = 0;
+			document.getElementById("act_passivel1_2").value = 0;
+			document.getElementById("act_passivel1_3").value = 0;
+			document.getElementById("act_passivel1_4").value = 0;
+		}
+	}
+	function stop_action1_act(){
+		if (document.getElementById("stop1_act").value = def_stop_act){
+			document.getElementById("stop1_act").value = 1;
+			def_stop_act = 0;
+			stop_1action_act.innerHTML = "<span style='color:#fff022;'>New <u>A</u>ctive</span>";
+			max_deg1_1_2 = -360; 
+			max_deg1_2_2 = -360; 
+			max_deg1_3_2 = -360; 
+			max_deg1_4_2 = -360;
+
+		} else {
+			document.getElementById("stop1_act").value = 0;
+			def_stop_act = 1;
+			stop_1action_act.innerHTML = "<b><u>A</u>ctive</b>";
+			document.getElementById("act_active1_1").value = 0;
+			document.getElementById("act_active1_2").value = 0;
+			document.getElementById("act_active1_3").value = 0;
+			document.getElementById("act_active1_4").value = 0;
+		}
+	}
+
+	// ------------------------------------------------------ Fold fingers -------------------------------------------------------------
+	function stop_action2_pas(){
+		if (document.getElementById("stop2_pas").value = def_stop_pas){
+			document.getElementById("stop2_pas").value = 1;
+			def_stop_pas = 0;
+			stop_2action_pas.innerHTML = "<span style='color:#fff022;'>New <u>P</u>assive</span>";  
+			max_deg2_1_1_1 = -360; max_deg2_1_2_1 = -360;
+			max_deg2_2_1_1 = -360; max_deg2_2_2_1 = -360; max_deg2_2_3_1 = -360;
+			max_deg2_3_1_1 = -360; max_deg2_3_2_1 = -360; max_deg2_3_3_1 = -360;
+			max_deg2_4_1_1 = -360; max_deg2_4_2_1 = -360; max_deg2_4_3_1 = -360;
+			max_deg2_5_1_1 = -360; max_deg2_5_2_1 = -360; max_deg2_5_3_1 = -360;
+		} else {
+			document.getElementById("stop2_pas").value = 0;
+			def_stop_pas = 1;
+			stop_2action_pas.innerHTML = "<b><u>P</u>assive</b>";   
+			document.getElementById("act_passivel2_1_1").value = 0;
+			document.getElementById("act_passivel2_1_2").value = 0;
+			document.getElementById("act_passivel2_2_1").value = 0;
+			document.getElementById("act_passivel2_2_2").value = 0;
+			document.getElementById("act_passivel2_2_3").value = 0;
+			document.getElementById("act_passivel2_3_1").value = 0;
+			document.getElementById("act_passivel2_3_2").value = 0;
+			document.getElementById("act_passivel2_3_3").value = 0;
+			document.getElementById("act_passivel2_4_1").value = 0;
+			document.getElementById("act_passivel2_4_2").value = 0;
+			document.getElementById("act_passivel2_4_3").value = 0;
+			document.getElementById("act_passivel2_5_1").value = 0;
+			document.getElementById("act_passivel2_5_2").value = 0;
+			document.getElementById("act_passivel2_5_3").value = 0;
+		}
+	}
+	function stop_action2_act(){
+		if (document.getElementById("stop2_act").value = def_stop_act){
+			document.getElementById("stop2_act").value = 1;
+			def_stop_act = 0;
+			stop_2action_act.innerHTML = "<span style='color:#fff022;'>New <u>A</u>ctive</span>";
+			max_deg2_1_1_2 = -360; max_deg2_1_2_2 = -360;
+			max_deg2_2_1_2 = -360; max_deg2_2_2_2 = -360; max_deg2_2_3_2 = -360;
+			max_deg2_3_1_2 = -360; max_deg2_3_2_2 = -360; max_deg2_3_3_2 = -360;
+			max_deg2_4_1_2 = -360; max_deg2_4_2_2 = -360; max_deg2_4_3_2 = -360;
+			max_deg2_5_1_2 = -360; max_deg2_5_2_2 = -360; max_deg2_5_3_2 = -360;
+		} else {
+			document.getElementById("stop2_act").value = 0;
+			def_stop_act = 1;
+			stop_2action_act.innerHTML = "<b><u>A</u>ctive</b>";
+			document.getElementById("act_active2_1_1").value = 0;
+			document.getElementById("act_active2_1_2").value = 0;
+			document.getElementById("act_active2_2_1").value = 0;
+			document.getElementById("act_active2_2_2").value = 0;
+			document.getElementById("act_active2_2_3").value = 0;
+			document.getElementById("act_active2_3_1").value = 0;
+			document.getElementById("act_active2_3_2").value = 0;
+			document.getElementById("act_active2_3_3").value = 0;
+			document.getElementById("act_active2_4_1").value = 0;
+			document.getElementById("act_active2_4_2").value = 0;
+			document.getElementById("act_active2_4_3").value = 0;
+			document.getElementById("act_active2_5_1").value = 0;
+			document.getElementById("act_active2_5_2").value = 0;
+			document.getElementById("act_active2_5_3").value = 0;
+		}
+	}
+
+	// ------------------------------------------------------ Flextion/Extension ------------------------------------------------------
+	function stop_action3_pas(){
+		if (document.getElementById("stop3_pas").value = def_stop_pas){
+			document.getElementById("stop3_pas").value = 1;
+			def_stop_pas = 0;
+			stop_3action_pas.innerHTML = "<span style='color:#fff022;'>New <u>P</u>assive</span>";  
+			max_deg3_1_1 = -360; 
+			max_deg3_2_1 = -360;
+			// document.getElementById("act_passivel3").reset();
+		} else {
+			document.getElementById("stop3_pas").value = 0;
+			def_stop_pas = 1;
+			stop_3action_pas.innerHTML = "<b><u>P</u>assive</b>";  
+			document.getElementById("act_passivel3").value = 0;
+		}
+	}
+	function stop_action3_act(){
+		if (document.getElementById("stop3_act").value = def_stop_act){
+			document.getElementById("stop3_act").value = 1;
+			def_stop_act = 0;
+			stop_3action_act.innerHTML = "<span style='color:#fff022;'>New <u>A</u>ctive</span>";
+			max_deg3_1_2 = -360; 
+			max_deg3_2_2 = -360;
+			// document.getElementById("act_passivel3").reset();
+		} else {
+			document.getElementById("stop3_act").value = 0;
+			def_stop_act = 1;
+			stop_3action_act.innerHTML = "<b><u>A</u>ctive</b>";
+			document.getElementById("act_active3").value = 0 ;
+		}
+	}
+
+	// ------------------------------------------------------ Radial/Ulnar deviation ------------------------------------------------------
+	function stop_action4_pas(){
+		if (document.getElementById("stop4_pas").value = def_stop_pas){
+			document.getElementById("stop4_pas").value = 1;
+			def_stop_pas = 0;
+			stop_4action_pas.innerHTML = "<span style='color:#fff022;'>New <u>P</u>assive</span>";  
+			max_deg4_1_1 = -360; 
+			max_deg4_2_1 = -360;
+		} else {
+			document.getElementById("stop4_pas").value = 0;
+			def_stop_pas = 1;
+			stop_4action_pas.innerHTML = "<b><u>P</u>assive</b>"; 
+			document.getElementById("act_passivel4").value = 0;  
+		}
+	}
+	function stop_action4_act(){
+		if (document.getElementById("stop4_act").value = def_stop_act){
+			document.getElementById("stop4_act").value = 1;
+			def_stop_act = 0;
+			stop_4action_act.innerHTML = "<span style='color:#fff022;'>New <u>A</u>ctive</span>";
+			max_deg4_1_2 = -360; 
+			max_deg4_2_2 = -360;
+		} else {
+			document.getElementById("stop4_act").value = 0;
+			def_stop_act = 1;
+			stop_4action_act.innerHTML = "<b><u>A</u>ctive</b>";
+			document.getElementById("act_active4").value = 0 ;
+		}
+	}
+
+
+	// Set up the controller:
+	Leap.loop({background: true}, {hand: function (hand) {
+		// console.log(hand);
+		var stop1_pas = document.getElementById("stop1_pas").value; var stop1_act = document.getElementById("stop1_act").value;
+		var stop2_pas = document.getElementById("stop2_pas").value; var stop2_act = document.getElementById("stop2_act").value;
+		var stop3_pas = document.getElementById("stop3_pas").value; var stop3_act = document.getElementById("stop3_act").value;
+		var stop4_pas = document.getElementById("stop4_pas").value; var stop4_act = document.getElementById("stop4_act").value;
+
+		// --------------------------------- Distance between fingers ------------------------------------------------------------
+			// dot ค่า 2 ตัว เช่น ระหว่าง a กับ b ---- ข้อมูลเพิ่มเติมของ module vec3 : https://glmatrix.net/docs/module-vec3.html
+            // ข้อมูล API : https://developer-archive.leapmotion.com/documentation/javascript/api/Leap.Finger.html
+            /*
+            // เขียนแบบดึงจากข้อกระดูกต่อกัน
+            var dotProduct1 = Leap.vec3.dot(
+                // นิ้วชี้-นิ้วกลาง 
+                hand.indexFinger.proximal.direction(),
+                hand.middleFinger.proximal.direction()
+            );
+            var dotProduct2 = Leap.vec3.dot(
+                // นิ้วกลาง-นิ้วนาง
+                hand.middleFinger.proximal.direction(),
+                hand.ringFinger.proximal.direction()
+            );
+            var dotProduct3 = Leap.vec3.dot(
+                // นิ้วนาง-นิ้วก้อย
+                hand.ringFinger.proximal.direction(),
+                hand.pinky.proximal.direction()
+            );
+            var dotProduct4 = Leap.vec3.dot(
+                // นิ้วโป้ง-นิ้วชี้
+                // hand.thumb.proximal.direction(),
+                hand.thumb.medial.direction(),
+                hand.indexFinger.proximal.direction()
+            );
+            */
+            var dotProduct1 = Leap.vec3.dot(
+                // นิ้วชี้-นิ้วกลาง 
+                hand.indexFinger.direction,
+                hand.middleFinger.direction
+            );
+            var dotProduct2 = Leap.vec3.dot(
+                // นิ้วกลาง-นิ้วนาง
+                hand.middleFinger.direction,
+                hand.ringFinger.direction
+            );
+            var dotProduct3 = Leap.vec3.dot(
+                // นิ้วนาง-นิ้วก้อย
+                hand.ringFinger.direction,
+                hand.pinky.direction
+            );
+            var dotProduct4 = Leap.vec3.dot(
+                // นิ้วโป้ง-นิ้วชี้
+                // hand.thumb.proximal.direction(),
+                hand.thumb.direction,
+                hand.indexFinger.direction
+            );
+
+            var angle1 = Math.acos(dotProduct1);
+            var angle2 = Math.acos(dotProduct2);
+            var angle3 = Math.acos(dotProduct3);
+            var angle4 = Math.acos(dotProduct4);
+
+			
+			var act_name1_1 = document.getElementById("act_name1_1");
+			var act_name1_2 = document.getElementById("act_name1_2");
+			var act_name1_3 = document.getElementById("act_name1_3");
+			var act_name1_4 = document.getElementById("act_name1_4");
+			var act_passivel1_1 = document.getElementById("act_passivel1_1");
+			var act_passivel1_2 = document.getElementById("act_passivel1_2");
+			var act_passivel1_3 = document.getElementById("act_passivel1_3");
+			var act_passivel1_4 = document.getElementById("act_passivel1_4");
+			var act_active1_1 = document.getElementById("act_active1_1");
+			var act_active1_2 = document.getElementById("act_active1_2");
+			var act_active1_3 = document.getElementById("act_active1_3");
+			var act_active1_4 = document.getElementById("act_active1_4");
+			var handtype1 = hand.type;
+
+			// มือซ้าย
+			if (document.getElementById('myHandLeft1').checked) {	
+				if(handtype1 == "left"){
+
+					if (document.getElementById('degCheck4').checked) {
+						act_name1_4.value = "Thumb-Index_Angle_" + (hand.type);
+						// Stop Action
+						if (stop1_pas == 0){
+							if(max_deg1_4_1 < (Number((angle4 * TO_DEG1).toFixed() ))){
+								max_deg1_4_1 = Number(angle4 * TO_DEG1).toFixed();
+								act_passivel1_4.value = max_deg1_4_1;
+							}
+							// act_passivel1_4.value = (angle4 * TO_DEG1).toFixed();
+						} 
+						if (stop1_act == 0){
+							if(max_deg1_4_2 < (Number((angle4 * TO_DEG1).toFixed() ))){
+								max_deg1_4_2 = Number(angle4 * TO_DEG1).toFixed();
+								act_active1_4.value = max_deg1_4_2;
+							}
+							// act_active1_4.value = (angle4 * TO_DEG1).toFixed();
+						} 
+						// End Stop
+						// act_passivel1_4.value = (angle4 * TO_DEG1).toFixed();
+						// act_active1_4.value = (angle4 * TO_DEG1).toFixed();
+					} 
+					if(document.getElementById('degCheck1').checked) {
+						act_name1_1.value = "Index-Middle_Angle_" + (hand.type);
+						// Stop Action
+						if (stop1_pas == 0){
+							if(max_deg1_1_1 < (Number((angle1 * TO_DEG1).toFixed() ))){
+								max_deg1_1_1 = Number(angle1 * TO_DEG1).toFixed();
+								act_passivel1_1.value = max_deg1_1_1;
+							}
+						} 
+						if (stop1_act == 0){
+							if(max_deg1_1_2 < (Number((angle1 * TO_DEG1).toFixed() ))){
+								max_deg1_1_2 = Number(angle1 * TO_DEG1).toFixed();
+								act_active1_1.value = max_deg1_1_2;
+							}
+						} 
+						// End Stop
+						// act_passivel1_1.value = (angle1 * TO_DEG1).toFixed();
+						// act_active1_1.value = (angle1 * TO_DEG1).toFixed();
+					}
+					if(document.getElementById('degCheck2').checked) {
+						act_name1_2.value = "Middle-Ring_Angle_" + (hand.type);
+						// Stop Action
+						if (stop1_pas == 0){
+							if(max_deg1_2_1 < (Number((angle2 * TO_DEG1).toFixed() ))){
+								max_deg1_2_1 = Number(angle2 * TO_DEG1).toFixed();
+								act_passivel1_2.value = max_deg1_2_1;
+							}
+						} 
+						if (stop1_act == 0){
+							if(max_deg1_2_2 < (Number((angle2 * TO_DEG1).toFixed() ))){
+								max_deg1_2_2 = Number(angle2 * TO_DEG1).toFixed();
+								act_active1_2.value = max_deg1_2_2;
+							}
+						} 
+						// End Stop
+						// act_passivel1_2.value = (angle2 * TO_DEG1).toFixed();
+						// act_active1_2.value = (angle2 * TO_DEG1).toFixed();
+					} 
+					if(document.getElementById('degCheck3').checked) {
+						act_name1_3.value = "Ring-Pinky_Angle_" + (hand.type);
+						// Stop Action
+						if (stop1_pas == 0){
+							if(max_deg1_3_1 < (Number((angle3 * TO_DEG1).toFixed() ))){
+								max_deg1_3_1 = Number(angle3 * TO_DEG1).toFixed();
+								act_passivel1_3.value = max_deg1_3_1;
+							}
+						} 
+						if (stop1_act == 0){
+							if(max_deg1_3_2 < (Number((angle3 * TO_DEG1).toFixed() ))){
+								max_deg1_3_2 = Number(angle3 * TO_DEG1).toFixed();
+								act_active1_3.value = max_deg1_3_2;
+							}
+						} 
+						// End Stop
+						// act_passivel1_3.value = (angle3 * TO_DEG1).toFixed();
+						// act_active1_3.value = (angle3 * TO_DEG1).toFixed();
+					}
+					//ใช้ จุด 2 จุดหาตำแหน่งระกว่างกัน //.toPrecision(2) ตัดให้ไม่มีทศนิยม //.toFixed() 
+					output_deg1.innerHTML = '&ensp;' + 'นิ้วชี้-นิ้วกลาง : ' + (angle1 * TO_DEG1).toFixed() + '°';
+					lth1.innerHTML = '&ensp;' + '-----------------------------------------';
+					output_deg2.innerHTML = '&ensp;' + 'นิ้วกลาง-นิ้วนาง : ' + (angle2 * TO_DEG1).toFixed() + '°';
+					lth2.innerHTML = '&ensp;' + '-----------------------------------------';
+					output_deg3.innerHTML = '&ensp;' + 'นิ้วนาง-นิ้วก้อย : ' + (angle3 * TO_DEG1).toFixed() + '°';
+					lth3.innerHTML = '&ensp;' + '-----------------------------------------';
+					output_deg4.innerHTML = '&ensp;' + 'นิ้วโป้ง-นิ้วชี้  : ' + (angle4 * TO_DEG1).toFixed() + '°';
+					lth4.innerHTML = '&ensp;' + '-----------------------------------------';
+				}
+			}
+			// มือขวา
+			if (document.getElementById('myHandRight1').checked) {	
+				if(handtype1 == "right"){
+
+					if (document.getElementById('degCheck4').checked) {
+						act_name1_4.value = "Thumb-Index_Angle_" + (hand.type);
+						// Stop Action
+						if (stop1_pas == 0){
+							if(max_deg1_4_1 < (Number((angle4 * TO_DEG1).toFixed() ))){
+								max_deg1_4_1 = Number(angle4 * TO_DEG1).toFixed();
+								act_passivel1_4.value = max_deg1_4_1;
+							}
+							// act_passivel1_4.value = (angle4 * TO_DEG1).toFixed();
+						} 
+						if (stop1_act == 0){
+							if(max_deg1_4_2 < (Number((angle4 * TO_DEG1).toFixed() ))){
+								max_deg1_4_2 = Number(angle4 * TO_DEG1).toFixed();
+								act_active1_4.value = max_deg1_4_2;
+							}
+							// act_active1_4.value = (angle4 * TO_DEG1).toFixed();
+						} 
+						// End Stop
+						// act_passivel1_4.value = (angle4 * TO_DEG1).toFixed();
+						// act_active1_4.value = (angle4 * TO_DEG1).toFixed();
+					} 
+					if(document.getElementById('degCheck1').checked) {
+						act_name1_1.value = "Index-Middle_Angle_" + (hand.type);
+						// Stop Action
+						if (stop1_pas == 0){
+							if(max_deg1_1_1 < (Number((angle1 * TO_DEG1).toFixed() ))){
+								max_deg1_1_1 = Number(angle1 * TO_DEG1).toFixed();
+								act_passivel1_1.value = max_deg1_1_1;
+							}
+						} 
+						if (stop1_act == 0){
+							if(max_deg1_1_2 < (Number((angle1 * TO_DEG1).toFixed() ))){
+								max_deg1_1_2 = Number(angle1 * TO_DEG1).toFixed();
+								act_active1_1.value = max_deg1_1_2;
+							}
+						} 
+						// End Stop
+						// act_passivel1_1.value = (angle1 * TO_DEG1).toFixed();
+						// act_active1_1.value = (angle1 * TO_DEG1).toFixed();
+					}
+					if(document.getElementById('degCheck2').checked) {
+						act_name1_2.value = "Middle-Ring_Angle_" + (hand.type);
+						// Stop Action
+						if (stop1_pas == 0){
+							if(max_deg1_2_1 < (Number((angle2 * TO_DEG1).toFixed() ))){
+								max_deg1_2_1 = Number(angle2 * TO_DEG1).toFixed();
+								act_passivel1_2.value = max_deg1_2_1;
+							}
+						} 
+						if (stop1_act == 0){
+							if(max_deg1_2_2 < (Number((angle2 * TO_DEG1).toFixed() ))){
+								max_deg1_2_2 = Number(angle2 * TO_DEG1).toFixed();
+								act_active1_2.value = max_deg1_2_2;
+							}
+						} 
+						// End Stop
+						// act_passivel1_2.value = (angle2 * TO_DEG1).toFixed();
+						// act_active1_2.value = (angle2 * TO_DEG1).toFixed();
+					} 
+					if(document.getElementById('degCheck3').checked) {
+						act_name1_3.value = "Ring-Pinky_Angle_" + (hand.type);
+						// Stop Action
+						if (stop1_pas == 0){
+							if(max_deg1_3_1 < (Number((angle3 * TO_DEG1).toFixed() ))){
+								max_deg1_3_1 = Number(angle3 * TO_DEG1).toFixed();
+								act_passivel1_3.value = max_deg1_3_1;
+							}
+						} 
+						if (stop1_act == 0){
+							if(max_deg1_3_2 < (Number((angle3 * TO_DEG1).toFixed() ))){
+								max_deg1_3_2 = Number(angle3 * TO_DEG1).toFixed();
+								act_active1_3.value = max_deg1_3_2;
+							}
+						} 
+						// End Stop
+						// act_passivel1_3.value = (angle3 * TO_DEG1).toFixed();
+						// act_active1_3.value = (angle3 * TO_DEG1).toFixed();
+					}
+					output_deg1.innerHTML = '&ensp;' + 'นิ้วชี้-นิ้วกลาง : ' + (angle1 * TO_DEG1).toFixed() + '°';
+					lth1.innerHTML = '&ensp;' + '-----------------------------------------';
+					output_deg2.innerHTML = '&ensp;' + 'นิ้วกลาง-นิ้วนาง : ' + (angle2 * TO_DEG1).toFixed() + '°';
+					lth2.innerHTML = '&ensp;' + '-----------------------------------------';
+					output_deg3.innerHTML = '&ensp;' + 'นิ้วนาง-นิ้วก้อย : ' + (angle3 * TO_DEG1).toFixed() + '°';
+					lth3.innerHTML = '&ensp;' + '-----------------------------------------';
+					output_deg4.innerHTML = '&ensp;' + 'นิ้วโป้ง-นิ้วชี้  : ' + (angle4 * TO_DEG1).toFixed() + '°';
+					lth4.innerHTML = '&ensp;' + '-----------------------------------------';
+				}
+			}
+
+            // var handtype1 = hand.type;
+            // if(handtype1 == "left"){
+            //     // hand_type.innerHTML = '&ensp;' + 'มือข้าง : '+ handtype;
+            //     hand_type1.innerHTML = '&ensp;' + 'มือข้าง : '+ 'ซ้าย';
+            // } else {
+            //     hand_type1.innerHTML = '&ensp;' + 'มือข้าง : '+ 'ขวา';
+            // }	
+
+		// --------------------------------- Fold fingers ------------------------------------------------------------------------
+			// dot ค่า 2 ตัว เช่น ระหว่าง a กับ b ---- ข้อมูลเพิ่มเติมของ module vec3 : https://glmatrix.net/docs/module-vec3.html
+            // ข้อมูล API : https://developer-archive.leapmotion.com/documentation/javascript/api/Leap.Finger.html
+            /*
+                distal     = กระดูกปลายนิ้วบนสุด
+                medial     = กระดูกกลางนิ้ว
+                proximal   = กระดูกล่างติดฝ่ามือ
+                metacarpal = กระดูกฝ่ามือ
+            */
+            // นิ้วโป้ง 
+            var dotThumbDip = Leap.vec3.dot(hand.thumb.distal.direction(), hand.thumb.medial.direction());
+        	var dotThumbPip = Leap.vec3.dot(hand.thumb.medial.direction(), hand.thumb.proximal.direction());
+            // นิ้วชี้
+            var dotIndexDip = Leap.vec3.dot(hand.indexFinger.distal.direction(),hand.indexFinger.medial.direction());
+            var dotIndexPip = Leap.vec3.dot(hand.indexFinger.medial.direction(),hand.indexFinger.proximal.direction());
+            var dotIndexMcp = Leap.vec3.dot(hand.indexFinger.proximal.direction(),hand.indexFinger.metacarpal.direction());
+            // นิ้วกลาง 
+            var dotMiddleDip = Leap.vec3.dot(hand.middleFinger.distal.direction(), hand.middleFinger.medial.direction());
+            var dotMiddlePip = Leap.vec3.dot(hand.middleFinger.medial.direction(), hand.middleFinger.proximal.direction());
+            var dotMiddleMcp = Leap.vec3.dot( hand.middleFinger.proximal.direction(), hand.middleFinger.metacarpal.direction());  
+            // นิ้วนาง
+            var dotRingDip = Leap.vec3.dot(hand.ringFinger.distal.direction(), hand.ringFinger.medial.direction());
+            var dotRingPip = Leap.vec3.dot(hand.ringFinger.medial.direction(), hand.ringFinger.proximal.direction());
+            var dotRingMcp = Leap.vec3.dot(hand.ringFinger.proximal.direction(), hand.ringFinger.metacarpal.direction()); 
+            // นิ้วก้อย 
+            var dotPinkyDip = Leap.vec3.dot(hand.pinky.distal.direction(), hand.pinky.medial.direction());
+            var dotPinkyPip = Leap.vec3.dot(hand.pinky.medial.direction(), hand.pinky.proximal.direction());
+            var dotPinkyMcp = Leap.vec3.dot( hand.pinky.proximal.direction(), hand.pinky.metacarpal.direction());  
+
+            /* ----------------------------------------------------------------------------------------- */
+            // นิ้วโป้ง
+            var thumAngle1 = Math.acos(dotThumbDip);
+            var thumAngle2 = Math.acos(dotThumbPip);
+            // นิ้วชี้
+            var indexAngle1 = Math.acos(dotIndexDip);
+            var indexAngle2 = Math.acos(dotIndexPip);
+            var indexAngle3 = Math.acos(dotIndexMcp);
+            // นิ้วกลาง 
+            var middleAngle1 = Math.acos(dotMiddleDip);
+            var middleAngle2 = Math.acos(dotMiddlePip);
+            var middleAngle3 = Math.acos(dotMiddleMcp);
+            // นิ้วนาง
+            var ringAngle1 = Math.acos(dotRingDip);
+            var ringAngle2 = Math.acos(dotRingPip);
+            var ringAngle3 = Math.acos(dotRingMcp);
+            // นิ้วก้อย
+            var pinkyAngle1 = Math.acos(dotPinkyDip);
+            var pinkyAngle2 = Math.acos(dotPinkyPip);
+            var pinkyAngle3 = Math.acos(dotPinkyMcp);
+
+			var act_name2_1_1 = document.getElementById("act_name2_1_1");
+			var act_name2_1_2 = document.getElementById("act_name2_1_2");
+			var act_name2_2_1 = document.getElementById("act_name2_2_1");
+			var act_name2_2_2 = document.getElementById("act_name2_2_2");
+			var act_name2_2_3 = document.getElementById("act_name2_2_3");
+			var act_name2_3_1 = document.getElementById("act_name2_3_1");
+			var act_name2_3_2 = document.getElementById("act_name2_3_2");
+			var act_name2_3_3 = document.getElementById("act_name2_3_3");
+			var act_name2_4_1 = document.getElementById("act_name2_4_1");
+			var act_name2_4_2 = document.getElementById("act_name2_4_2");
+			var act_name2_4_3 = document.getElementById("act_name2_4_3");
+			var act_name2_5_1 = document.getElementById("act_name2_5_1");
+			var act_name2_5_2 = document.getElementById("act_name2_5_2");
+			var act_name2_5_3 = document.getElementById("act_name2_5_3");
+			var act_passivel2_1_1 = document.getElementById("act_passivel2_1_1");
+			var act_passivel2_1_2 = document.getElementById("act_passivel2_1_2");
+			var act_passivel2_2_1 = document.getElementById("act_passivel2_2_1");
+			var act_passivel2_2_2 = document.getElementById("act_passivel2_2_2");
+			var act_passivel2_2_3 = document.getElementById("act_passivel2_2_3");
+			var act_passivel2_3_1 = document.getElementById("act_passivel2_3_1");
+			var act_passivel2_3_2 = document.getElementById("act_passivel2_3_2");
+			var act_passivel2_3_3 = document.getElementById("act_passivel2_3_3");
+			var act_passivel2_4_1 = document.getElementById("act_passivel2_4_1");
+			var act_passivel2_4_2 = document.getElementById("act_passivel2_4_2");
+			var act_passivel2_4_3 = document.getElementById("act_passivel2_4_3");
+			var act_passivel2_5_1 = document.getElementById("act_passivel2_5_1");
+			var act_passivel2_5_2 = document.getElementById("act_passivel2_5_2");
+			var act_passivel2_5_3 = document.getElementById("act_passivel2_5_3");
+			var act_active2_1_1 = document.getElementById("act_active2_1_1");
+			var act_active2_1_2 = document.getElementById("act_active2_1_2");
+			var act_active2_2_1 = document.getElementById("act_active2_2_1");
+			var act_active2_2_2 = document.getElementById("act_active2_2_2");
+			var act_active2_2_3 = document.getElementById("act_active2_2_3");
+			var act_active2_3_1 = document.getElementById("act_active2_3_1");
+			var act_active2_3_2 = document.getElementById("act_active2_3_2");
+			var act_active2_3_3 = document.getElementById("act_active2_3_3");
+			var act_active2_4_1 = document.getElementById("act_active2_4_1");
+			var act_active2_4_2 = document.getElementById("act_active2_4_2");
+			var act_active2_4_3 = document.getElementById("act_active2_4_3");
+			var act_active2_5_1 = document.getElementById("act_active2_5_1");
+			var act_active2_5_2 = document.getElementById("act_active2_5_2");
+			var act_active2_5_3 = document.getElementById("act_active2_5_3");
+			var handtype2 = hand.type;
+	
+			// มือซ้าย
+			if (document.getElementById('myHandLeft2').checked) {	
+				if(handtype2 == "left"){
+
+					if (document.getElementById('myCheck1').checked) {
+						act_name2_1_1.value = "Thumb-Dip_" + (hand.type);
+						act_name2_1_2.value = "Thumb-Pip_" + (hand.type);
+						// Stop Action
+						if (stop2_pas == 0){
+							if(max_deg2_1_1_1 < (Number((thumAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_1_1_1 = Number(thumAngle1 * TO_DEG2).toFixed();
+								act_passivel2_1_1.value = max_deg2_1_1_1;
+							}
+							if(max_deg2_1_2_1 < (Number((thumAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_1_2_1 = Number(thumAngle2 * TO_DEG2).toFixed();
+								act_passivel2_1_2.value = max_deg2_1_2_1;
+							}
+							// act_passivel2_1_1.value = (thumAngle1 * TO_DEG2).toFixed();
+							// act_passivel2_1_2.value = (thumAngle2 * TO_DEG2).toFixed();
+						} 
+						if (stop2_act == 0){
+							if(max_deg2_1_1_2 < (Number((thumAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_1_1_2 = Number(thumAngle1 * TO_DEG2).toFixed();
+								act_active2_1_1.value = max_deg2_1_1_2;
+							}
+							if(max_deg2_1_2_2 < (Number((thumAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_1_2_2 = Number(thumAngle2 * TO_DEG2).toFixed();
+								act_active2_1_2.value = max_deg2_1_2_2;
+							}
+							// act_active2_1_1.value = (thumAngle1 * TO_DEG2).toFixed();
+							// act_active2_1_2.value = (thumAngle1 * TO_DEG2).toFixed();
+						} 
+						// End Stop
+						// act_passivel2_1_1.value = (thumAngle1 * TO_DEG2).toFixed();
+						// act_passivel2_1_2.value = (thumAngle2 * TO_DEG2).toFixed();
+					} 
+					if(document.getElementById('myCheck2').checked) {
+						act_name2_2_1.value = "Index-Dip_" + (hand.type);
+						act_name2_2_2.value = "Index-Pip_" + (hand.type);
+						act_name2_2_3.value = "Index-Mcp_" + (hand.type);
+						// Stop Action
+						if (stop2_pas == 0){
+							if(max_deg2_2_1_1 < (Number((indexAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_2_1_1 = Number(indexAngle1 * TO_DEG2).toFixed();
+								act_passivel2_2_1.value = max_deg2_2_1_1;
+							}
+							if(max_deg2_2_2_1 < (Number((indexAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_2_2_1 = Number(indexAngle2 * TO_DEG2).toFixed();
+								act_passivel2_2_2.value = max_deg2_2_2_1;
+							}
+							if(max_deg2_2_3_1 < (Number((indexAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_2_3_1 = Number(indexAngle3 * TO_DEG2).toFixed();
+								act_passivel2_2_3.value = max_deg2_2_3_1;
+							}
+						} 
+						if (stop2_act == 0){
+							if(max_deg2_2_1_2 < (Number((indexAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_2_1_2 = Number(indexAngle1 * TO_DEG2).toFixed();
+								act_active2_2_1.value = max_deg2_2_1_2;
+							}
+							if(max_deg2_2_2_2 < (Number((indexAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_2_2_2 = Number(indexAngle2 * TO_DEG2).toFixed();
+								act_active2_2_2.value = max_deg2_2_2_2;
+							}
+							if(max_deg2_2_3_2 < (Number((indexAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_2_3_2 = Number(indexAngle3 * TO_DEG2).toFixed();
+								act_active2_2_3.value = max_deg2_2_3_2;
+							}
+							// act_active2_2_1.value = (indexAngle1 * TO_DEG2).toFixed();
+							// act_active2_2_2.value = (indexAngle2 * TO_DEG2).toFixed();
+							// act_active2_2_3.value = (indexAngle3 * TO_DEG2).toFixed();
+						} 
+						// End Stop
+						// act_passivel2_2_1.value = (indexAngle1 * TO_DEG2).toFixed();
+						// act_passivel2_2_2.value = (indexAngle2 * TO_DEG2).toFixed();
+						// act_passivel2_2_3.value = (indexAngle3 * TO_DEG2).toFixed();
+					}
+					if(document.getElementById('myCheck3').checked) {
+						act_name2_3_1.value = "Middle-Dip_" + (hand.type);
+						act_name2_3_2.value = "Middle-Pip_" + (hand.type);
+						act_name2_3_3.value = "Middle-Mcp_" + (hand.type);
+						// Stop Action
+						if (stop2_pas == 0){
+							if(max_deg2_3_1_1 < (Number((middleAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_3_1_1 = Number(middleAngle1 * TO_DEG2).toFixed();
+								act_passivel2_3_1.value = max_deg2_3_1_1;
+							}
+							if(max_deg2_3_2_1 < (Number((middleAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_3_2_1 = Number(middleAngle2 * TO_DEG2).toFixed();
+								act_passivel2_3_2.value = max_deg2_3_2_1;
+							}
+							if(max_deg2_3_3_1 < (Number((middleAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_3_3_1 = Number(middleAngle3 * TO_DEG2).toFixed();
+								act_passivel2_3_3.value = max_deg2_3_3_1;
+							}
+						} 
+						if (stop2_act == 0){
+							if(max_deg2_3_1_2 < (Number((middleAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_3_1_2 = Number(middleAngle1 * TO_DEG2).toFixed();
+								act_active2_3_1.value = max_deg2_3_1_2;
+							}
+							if(max_deg2_3_2_2 < (Number((middleAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_3_2_2 = Number(middleAngle2 * TO_DEG2).toFixed();
+								act_active2_3_2.value = max_deg2_3_2_2;
+							}
+							if(max_deg2_3_3_2 < (Number((middleAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_3_3_2 = Number(middleAngle3 * TO_DEG2).toFixed();
+								act_active2_3_3.value = max_deg2_3_3_2;
+							}
+						} 
+						// End Stop
+						// act_passivel2_3_1.value = (middleAngle1 * TO_DEG2).toFixed();
+						// act_passivel2_3_2.value = (middleAngle2 * TO_DEG2).toFixed();
+						// act_passivel2_3_3.value = (middleAngle3 * TO_DEG2).toFixed();
+					} 
+					if(document.getElementById('myCheck4').checked) {
+						act_name2_4_1.value = "Ring-Dip_" + (hand.type);
+						act_name2_4_2.value = "Ring-Pip_" + (hand.type);
+						act_name2_4_3.value = "Ring-Mcp_" + (hand.type);
+						// Stop Action
+						if (stop2_pas == 0){
+							if(max_deg2_4_1_1 < (Number((ringAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_4_1_1 = Number(ringAngle1 * TO_DEG2).toFixed();
+								act_passivel2_4_1.value = max_deg2_4_1_1;
+							}
+							if(max_deg2_4_2_1 < (Number((ringAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_4_2_1 = Number(ringAngle2 * TO_DEG2).toFixed();
+								act_passivel2_4_2.value = max_deg2_4_2_1;
+							}
+							if(max_deg2_4_3_1 < (Number((ringAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_4_3_1 = Number(ringAngle3 * TO_DEG2).toFixed();
+								act_passivel2_4_3.value = max_deg2_4_3_1;
+							}
+						} 
+						if (stop2_act == 0){
+							if(max_deg2_4_1_2 < (Number((ringAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_4_1_2 = Number(ringAngle1 * TO_DEG2).toFixed();
+								act_active2_4_1.value = max_deg2_4_1_2;
+							}
+							if(max_deg2_4_2_2 < (Number((ringAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_4_2_2 = Number(ringAngle2 * TO_DEG2).toFixed();
+								act_active2_4_2.value = max_deg2_4_2_2;
+							}
+							if(max_deg2_4_3_2 < (Number((ringAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_4_3_2 = Number(ringAngle3 * TO_DEG2).toFixed();
+								act_active2_4_3.value = max_deg2_4_3_2;
+							}
+						} 
+						// End Stop
+						// act_passivel2_4_1.value = (ringAngle1 * TO_DEG2).toFixed();
+						// act_passivel2_4_2.value = (ringAngle2 * TO_DEG2).toFixed();
+						// act_passivel2_4_3.value = (ringAngle3 * TO_DEG2).toFixed();
+					}
+					if(document.getElementById('myCheck4').checked) {
+						act_name2_5_1.value = "Pinky-Dip_" + (hand.type);
+						act_name2_5_2.value = "Pinky-Pip_" + (hand.type);
+						act_name2_5_3.value = "Pinky-Mcp_" + (hand.type);
+						// Stop Action
+						if (stop2_pas == 0){
+							if(max_deg2_5_1_1 < (Number((pinkyAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_5_1_1 = Number(pinkyAngle1 * TO_DEG2).toFixed();
+								act_passivel2_5_1.value = max_deg2_5_1_1;
+							}
+							if(max_deg2_5_2_1 < (Number((pinkyAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_5_2_1 = Number(pinkyAngle2 * TO_DEG2).toFixed();
+								act_passivel2_5_2.value = max_deg2_5_2_1;
+							}
+							if(max_deg2_5_3_1 < (Number((pinkyAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_5_3_1 = Number(pinkyAngle3 * TO_DEG2).toFixed();
+								act_passivel2_5_3.value = max_deg2_5_3_1;
+							}
+						} 
+						if (stop2_act == 0){
+							if(max_deg2_5_1_2 < (Number((pinkyAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_5_1_2 = Number(pinkyAngle1 * TO_DEG2).toFixed();
+								act_active2_5_1.value = max_deg2_5_1_2;
+							}
+							if(max_deg2_5_2_2 < (Number((pinkyAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_5_2_2 = Number(pinkyAngle2 * TO_DEG2).toFixed();
+								act_active2_5_2.value = max_deg2_5_2_2;
+							}
+							if(max_deg2_5_3_2 < (Number((pinkyAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_5_3_2 = Number(pinkyAngle3 * TO_DEG2).toFixed();
+								act_active2_5_3.value = max_deg2_5_3_2;
+							}
+						} 
+						// End Stop
+						// act_passivel2_5_1.value = (pinkyAngle1 * TO_DEG2).toFixed();
+						// act_passivel2_5_2.value = (pinkyAngle2 * TO_DEG2).toFixed();
+						// act_passivel2_5_3.value = (pinkyAngle3 * TO_DEG2).toFixed();
+					}
+				}
+			}
+			// มือขวา
+			if (document.getElementById('myHandRight2').checked) {	
+				if(handtype2 == "right"){
+
+					if (document.getElementById('myCheck1').checked) {
+						act_name2_1_1.value = "Thumb-Dip_" + (hand.type);
+						act_name2_1_2.value = "Thumb-Pip_" + (hand.type);
+						// Stop Action
+						if (stop2_pas == 0){
+							if(max_deg2_1_1_1 < (Number((thumAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_1_1_1 = Number(thumAngle1 * TO_DEG2).toFixed();
+								act_passivel2_1_1.value = max_deg2_1_1_1;
+							}
+							if(max_deg2_1_2_1 < (Number((thumAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_1_2_1 = Number(thumAngle2 * TO_DEG2).toFixed();
+								act_passivel2_1_2.value = max_deg2_1_2_1;
+							}
+						} 
+						if (stop2_act == 0){
+							if(max_deg2_1_1_2 < (Number((thumAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_1_1_2 = Number(thumAngle1 * TO_DEG2).toFixed();
+								act_active2_1_1.value = max_deg2_1_1_2;
+							}
+							if(max_deg2_1_2_2 < (Number((thumAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_1_2_2 = Number(thumAngle2 * TO_DEG2).toFixed();
+								act_active2_1_2.value = max_deg2_1_2_2;
+							}
+						} 
+						// End Stop
+					} 
+					if(document.getElementById('myCheck2').checked) {
+						act_name2_2_1.value = "Index-Dip_" + (hand.type);
+						act_name2_2_2.value = "Index-Pip_" + (hand.type);
+						act_name2_2_3.value = "Index-Mcp_" + (hand.type);
+						// Stop Action
+						if (stop2_pas == 0){
+							if(max_deg2_2_1_1 < (Number((indexAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_2_1_1 = Number(indexAngle1 * TO_DEG2).toFixed();
+								act_passivel2_2_1.value = max_deg2_2_1_1;
+							}
+							if(max_deg2_2_2_1 < (Number((indexAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_2_2_1 = Number(indexAngle2 * TO_DEG2).toFixed();
+								act_passivel2_2_2.value = max_deg2_2_2_1;
+							}
+							if(max_deg2_2_3_1 < (Number((indexAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_2_3_1 = Number(indexAngle3 * TO_DEG2).toFixed();
+								act_passivel2_2_3.value = max_deg2_2_3_1;
+							}
+						} 
+						if (stop2_act == 0){
+							if(max_deg2_2_1_2 < (Number((indexAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_2_1_2 = Number(indexAngle1 * TO_DEG2).toFixed();
+								act_active2_2_1.value = max_deg2_2_1_2;
+							}
+							if(max_deg2_2_2_2 < (Number((indexAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_2_2_2 = Number(indexAngle2 * TO_DEG2).toFixed();
+								act_active2_2_2.value = max_deg2_2_2_2;
+							}
+							if(max_deg2_2_3_2 < (Number((indexAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_2_3_2 = Number(indexAngle3 * TO_DEG2).toFixed();
+								act_active2_2_3.value = max_deg2_2_3_2;
+							}
+						} 
+						// End Stop
+					}
+					if(document.getElementById('myCheck3').checked) {
+						act_name2_3_1.value = "Middle-Dip_" + (hand.type);
+						act_name2_3_2.value = "Middle-Pip_" + (hand.type);
+						act_name2_3_3.value = "Middle-Mcp_" + (hand.type);
+						// Stop Action
+						if (stop2_pas == 0){
+							if(max_deg2_3_1_1 < (Number((middleAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_3_1_1 = Number(middleAngle1 * TO_DEG2).toFixed();
+								act_passivel2_3_1.value = max_deg2_3_1_1;
+							}
+							if(max_deg2_3_2_1 < (Number((middleAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_3_2_1 = Number(middleAngle2 * TO_DEG2).toFixed();
+								act_passivel2_3_2.value = max_deg2_3_2_1;
+							}
+							if(max_deg2_3_3_1 < (Number((middleAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_3_3_1 = Number(middleAngle3 * TO_DEG2).toFixed();
+								act_passivel2_3_3.value = max_deg2_3_3_1;
+							}
+						} 
+						if (stop2_act == 0){
+							if(max_deg2_3_1_2 < (Number((middleAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_3_1_2 = Number(middleAngle1 * TO_DEG2).toFixed();
+								act_active2_3_1.value = max_deg2_3_1_2;
+							}
+							if(max_deg2_3_2_2 < (Number((middleAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_3_2_2 = Number(middleAngle2 * TO_DEG2).toFixed();
+								act_active2_3_2.value = max_deg2_3_2_2;
+							}
+							if(max_deg2_3_3_2 < (Number((middleAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_3_3_2 = Number(middleAngle3 * TO_DEG2).toFixed();
+								act_active2_3_3.value = max_deg2_3_3_2;
+							}
+						} 
+						// End Stop
+					} 
+					if(document.getElementById('myCheck4').checked) {
+						act_name2_4_1.value = "Ring-Dip_" + (hand.type);
+						act_name2_4_2.value = "Ring-Pip_" + (hand.type);
+						act_name2_4_3.value = "Ring-Mcp_" + (hand.type);
+						// Stop Action
+						if (stop2_pas == 0){
+							if(max_deg2_4_1_1 < (Number((ringAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_4_1_1 = Number(ringAngle1 * TO_DEG2).toFixed();
+								act_passivel2_4_1.value = max_deg2_4_1_1;
+							}
+							if(max_deg2_4_2_1 < (Number((ringAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_4_2_1 = Number(ringAngle2 * TO_DEG2).toFixed();
+								act_passivel2_4_2.value = max_deg2_4_2_1;
+							}
+							if(max_deg2_4_3_1 < (Number((ringAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_4_3_1 = Number(ringAngle3 * TO_DEG2).toFixed();
+								act_passivel2_4_3.value = max_deg2_4_3_1;
+							}
+						} 
+						if (stop2_act == 0){
+							if(max_deg2_4_1_2 < (Number((ringAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_4_1_2 = Number(ringAngle1 * TO_DEG2).toFixed();
+								act_active2_4_1.value = max_deg2_4_1_2;
+							}
+							if(max_deg2_4_2_2 < (Number((ringAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_4_2_2 = Number(ringAngle2 * TO_DEG2).toFixed();
+								act_active2_4_2.value = max_deg2_4_2_2;
+							}
+							if(max_deg2_4_3_2 < (Number((ringAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_4_3_2 = Number(ringAngle3 * TO_DEG2).toFixed();
+								act_active2_4_3.value = max_deg2_4_3_2;
+							}
+						} 
+						// End Stop
+					}
+					if(document.getElementById('myCheck4').checked) {
+						act_name2_5_1.value = "Pinky-Dip_" + (hand.type);
+						act_name2_5_2.value = "Pinky-Pip_" + (hand.type);
+						act_name2_5_3.value = "Pinky-Mcp_" + (hand.type);
+						// Stop Action
+						if (stop2_pas == 0){
+							if(max_deg2_5_1_1 < (Number((pinkyAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_5_1_1 = Number(pinkyAngle1 * TO_DEG2).toFixed();
+								act_passivel2_5_1.value = max_deg2_5_1_1;
+							}
+							if(max_deg2_5_2_1 < (Number((pinkyAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_5_2_1 = Number(pinkyAngle2 * TO_DEG2).toFixed();
+								act_passivel2_5_2.value = max_deg2_5_2_1;
+							}
+							if(max_deg2_5_3_1 < (Number((pinkyAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_5_3_1 = Number(pinkyAngle3 * TO_DEG2).toFixed();
+								act_passivel2_5_3.value = max_deg2_5_3_1;
+							}
+						} 
+						if (stop2_act == 0){
+							if(max_deg2_5_1_2 < (Number((pinkyAngle1 * TO_DEG2).toFixed()))){
+								max_deg2_5_1_2 = Number(pinkyAngle1 * TO_DEG2).toFixed();
+								act_active2_5_1.value = max_deg2_5_1_2;
+							}
+							if(max_deg2_5_2_2 < (Number((pinkyAngle2 * TO_DEG2).toFixed()))){
+								max_deg2_5_2_2 = Number(pinkyAngle2 * TO_DEG2).toFixed();
+								act_active2_5_2.value = max_deg2_5_2_2;
+							}
+							if(max_deg2_5_3_2 < (Number((pinkyAngle3 * TO_DEG2).toFixed()))){
+								max_deg2_5_3_2 = Number(pinkyAngle3 * TO_DEG2).toFixed();
+								act_active2_5_3.value = max_deg2_5_3_2;
+							}
+						} 
+						// End Stop
+					}
+				}
+			}
+
+            //ใช้ จุด 2 จุดหาตำแหน่งระกว่างกัน //.toPrecision(2) ปัดทศนิยม //.toFixed() 
+            // นิ้วโป้ง
+            // thumb_deg1.innerHTML = '&ensp;' + 'นิ้วโป้ง-Dip : ' + (thumAngle1 * TO_DEG2).toFixed() + '°';
+            // thumb_deg2.innerHTML = '&ensp;' + 'นิ้วโป้ง-Pip : ' + (thumAngle2 * TO_DEG2).toFixed() + '°';
+            // th1.innerHTML = '&ensp;' + '--------------------------';
+            // // นิ้วชี้
+            // index_deg1.innerHTML = '&ensp;' + 'นิ้วชี้-Dip : ' + (indexAngle1 * TO_DEG2).toFixed() + '°';
+            // index_deg2.innerHTML = '&ensp;' + 'นิ้วชี้-Pip : ' + (indexAngle2 * TO_DEG2).toFixed() + '°';
+            // index_deg3.innerHTML = '&ensp;' + 'นิ้วชี้-Mcp : ' + (indexAngle3 * TO_DEG3).toFixed() + '°';
+            // th2.innerHTML = '&ensp;' + '--------------------------';
+            // // นิ้วกลาง
+            // middle_deg1.innerHTML = '&ensp;' + 'นิ้วกลาง-Dip : ' + (middleAngle1 * TO_DEG2).toFixed() + '°';
+            // middle_deg2.innerHTML = '&ensp;' + 'นิ้วกลาง-Pip : ' + (middleAngle2 * TO_DEG2).toFixed() + '°';
+            // middle_deg3.innerHTML = '&ensp;' + 'นิ้วกลาง-Mcp : ' + (middleAngle3 * TO_DEG3).toFixed() + '°';
+            // th3.innerHTML = '&ensp;' + '--------------------------';
+            // // นิ้วนาง
+            // ring_deg1.innerHTML = '&ensp;' + 'นิ้วนาง-Dip : ' + (ringAngle1 * TO_DEG2).toFixed() + '°';
+            // ring_deg2.innerHTML = '&ensp;' + 'นิ้วนาง-Pip : ' + (ringAngle2 * TO_DEG2).toFixed() + '°';
+            // ring_deg3.innerHTML = '&ensp;' + 'นิ้วนาง-Mcp : ' + (ringAngle3 * TO_DEG3).toFixed() + '°';
+            // th4.innerHTML = '&ensp;' + '--------------------------';
+            // // นิ้วก้อย
+            // pinky_deg1.innerHTML = '&ensp;' + 'นิ้วก้อย-Dip : ' + (pinkyAngle1 * TO_DEG2).toFixed() + '°';
+            // pinky_deg2.innerHTML = '&ensp;' + 'นิ้วก้อย-Pip : ' + (pinkyAngle2 * TO_DEG2).toFixed() + '°';
+            // pinky_deg3.innerHTML = '&ensp;' + 'นิ้วก้อย-Mcp : ' + (pinkyAngle3 * TO_DEG3).toFixed() + '°';
+            // th5.innerHTML = '&ensp;' + '--------------------------';
+            //มือข้างที่ใช้
+            // var handtype2 = hand.type;
+            // if(handtype2 == "left"){
+            //     // hand_type.innerHTML = '&ensp;' + 'มือข้าง : '+ handtype;
+            //     hand_type2.innerHTML = '&ensp;' + 'มือข้าง : '+ 'ซ้าย';
+            // } else {
+            //     hand_type2.innerHTML = '&ensp;' + 'มือข้าง : '+ 'ขวา';
+            // }
+
+
+		// --------------------------------- Flexion/Extension -------------------------------------------------------------------
+			
+			var handFlexion = hand.pitch();
+			var handExtension = hand.pitch();
+		
+			//ใช้ จุด 2 จุดหาตำแหน่งระกว่างกัน //.toPrecision(2) ปัดทศนิยม //.toFixed() 
+			var deg_dis_flexion = (handFlexion * TO_DEG3) ;
+			var deg_dis_extension = (handExtension * TO_DEG4) ;
+
+			// console.log(handFlexion);
+			var act3_name = document.getElementById("act_name3");
+			var flexion_val_pas = document.getElementById("act_passivel3");
+			var extension_val_pas = document.getElementById("act_passivel3");
+			var flexion_val_act = document.getElementById("act_active3");
+			var extension_val_act = document.getElementById("act_active3");
+			var handtype3 = hand.type;
+
+			// มือซ้าย
+			if (document.getElementById('myHandLeft3').checked) {	
+				if(handtype3 == "left"){
+					if (document.getElementById('rCheckFlexion').checked) {
+						act3_name.value = "Flexion_" + (hand.type);
+						// Stop Action
+						if (stop3_pas == 0){
+							// flexion_val_pas.value = (deg_dis_flexion).toFixed();
+							//stop3_pas = stop3_pas + 1;
+							if(max_deg3_1_1 < (Number((deg_dis_flexion).toFixed()))){
+								// flexion_max.innerHTML = '&ensp;' + 'Max : ' + (deg_dis_flexion).toFixed() + '°';
+								max_deg3_1_1 = Number(deg_dis_flexion).toFixed();
+								flexion_val_pas.value = max_deg3_1_1;
+							}
+						} 
+						if (stop3_act == 0){
+							// flexion_val_act.value = (deg_dis_flexion).toFixed();
+							if(max_deg3_1_2 < (Number((deg_dis_flexion).toFixed()))){
+								max_deg3_1_2 = Number(deg_dis_flexion).toFixed();
+								flexion_val_act.value = max_deg3_1_2;
+							}
+						} 
+						// End Stop
+						// if(min_deg3_1 > (Number((deg_dis_flexion).toFixed()))){
+						// 	flexion_min.innerHTML = '&ensp;' + 'Min : ' + (deg_dis_flexion).toFixed() + '°';
+						// 	min_deg3_1 = Number((deg_dis_flexion).toFixed())
+						// }	
+						flexion_deg.innerHTML = '&ensp;' + 'Flexion : ' + (deg_dis_flexion).toFixed() + '°';
+						// get_flexion_deg.innerHTML = (deg_dis_flexion).toFixed();
+
+					} else if(document.getElementById('rCheckExtension').checked) {
+						act3_name.value = "Extension_" + (hand.type);
+						// Stop Action
+						if (stop3_pas == 0){
+							// extension_val_pas.value = (deg_dis_extension).toFixed();
+							if(max_deg3_2_1 < (Number((deg_dis_extension).toFixed()))){
+								// extension_max.innerHTML = '&ensp;' + 'Max : ' + (deg_dis_extension).toFixed() + '°';
+								max_deg3_2_1 = Number(deg_dis_extension).toFixed();
+								extension_val_pas.value = max_deg3_2_1;
+							}
+						}
+						if (stop3_act == 0){
+							// extension_val_act.value = (deg_dis_extension).toFixed();
+							if(max_deg3_2_2 < (Number((deg_dis_extension).toFixed()))){
+								max_deg3_2_2 = Number(deg_dis_extension).toFixed();
+								extension_val_act.value = max_deg3_2_2;
+							}
+						}
+						// End Stop
+						// if(min_deg3_2 > (Number((deg_dis_extension).toFixed()))){
+						// 	extension_min.innerHTML = '&ensp;' + 'Min : ' + (deg_dis_extension).toFixed() + '°';
+						// 	min_deg3_2 = Number((deg_dis_extension).toFixed())
+						// }	
+						extension_deg.innerHTML = '&ensp;' + 'Extension : ' + (deg_dis_extension).toFixed() + '°';
+						// get_extension_deg.innerHTML = (deg_dis_extension).toFixed();
+					}
+				}
+			}
+			// มือขวา
+			if (document.getElementById('myHandRight3').checked) {	
+				if(handtype3 == "right"){
+					if (document.getElementById('rCheckFlexion').checked) {
+						act3_name.value = "Flexion_" + (hand.type);
+						// Stop Action
+						if (stop3_pas == 0){
+							// flexion_val_pas.value = (deg_dis_flexion).toFixed();
+							//stop3_pas = stop3_pas + 1;
+							if(max_deg3_1_1 < (Number((deg_dis_flexion).toFixed()))){
+								// flexion_max.innerHTML = '&ensp;' + 'Max : ' + (deg_dis_flexion).toFixed() + '°';
+								max_deg3_1_1 = Number(deg_dis_flexion).toFixed();
+								flexion_val_pas.value = max_deg3_1_1;
+							}
+						} 
+						if (stop3_act == 0){
+							// flexion_val_act.value = (deg_dis_flexion).toFixed();
+							if(max_deg3_1_2 < (Number((deg_dis_flexion).toFixed()))){
+								max_deg3_1_2 = Number(deg_dis_flexion).toFixed();
+								flexion_val_act.value = max_deg3_1_2;
+							}
+						} 
+						// End Stop
+						// if(min_deg3_1 > (Number((deg_dis_flexion).toFixed()))){
+						// 	flexion_min.innerHTML = '&ensp;' + 'Min : ' + (deg_dis_flexion).toFixed() + '°';
+						// 	min_deg3_1 = Number((deg_dis_flexion).toFixed())
+						// }	
+						flexion_deg.innerHTML = '&ensp;' + 'Flexion : ' + (deg_dis_flexion).toFixed() + '°';
+						// get_flexion_deg.innerHTML = (deg_dis_flexion).toFixed();
+
+					} else if(document.getElementById('rCheckExtension').checked) {
+						act3_name.value = "Extension_" + (hand.type);
+						// Stop Action
+						if (stop3_pas == 0){
+							// extension_val_pas.value = (deg_dis_extension).toFixed();
+							if(max_deg3_2_1 < (Number((deg_dis_extension).toFixed()))){
+								// extension_max.innerHTML = '&ensp;' + 'Max : ' + (deg_dis_extension).toFixed() + '°';
+								max_deg3_2_1 = Number(deg_dis_extension).toFixed();
+								extension_val_pas.value = max_deg3_2_1;
+							}
+						}
+						if (stop3_act == 0){
+							// extension_val_act.value = (deg_dis_extension).toFixed();
+							if(max_deg3_2_2 < (Number((deg_dis_extension).toFixed()))){
+								max_deg3_2_2 = Number(deg_dis_extension).toFixed();
+								extension_val_act.value = max_deg3_2_2;
+							}
+						}
+						// End Stop
+						// if(min_deg3_2 > (Number((deg_dis_extension).toFixed()))){
+						// 	extension_min.innerHTML = '&ensp;' + 'Min : ' + (deg_dis_extension).toFixed() + '°';
+						// 	min_deg3_2 = Number((deg_dis_extension).toFixed())
+						// }	
+						extension_deg.innerHTML = '&ensp;' + 'Extension : ' + (deg_dis_extension).toFixed() + '°';
+						// get_extension_deg.innerHTML = (deg_dis_extension).toFixed();
+					}
+				}
+			}
+			//มือข้างที่ใช้
+			// var handtype3 = hand.type;
+			// if(handtype3 == "left"){
+			// 	hand_type3.innerHTML = '&ensp;' + 'มือข้าง : '+ 'ซ้าย';
+			// } else {
+			// 	hand_type3.innerHTML = '&ensp;' + 'มือข้าง : '+ 'ขวา';
+			// }
+		
+		
+
+		// --------------------------------- Radial/Ulnar deviation -------------------------------------------------------------------	
+			var handRadial= hand.yaw();
+            var handUlnar = hand.yaw();
+            
+            var deg_dis_radial = (handRadial * TO_DEG3) ;
+            var deg_dis_ulnar = (handUlnar * TO_DEG4) ;
+            
+			var act4_name = document.getElementById("act_name4");
+			var radial_val_pas = document.getElementById("act_passivel4");
+			var ulnar_val_pas = document.getElementById("act_passivel4");
+			var radial_val_act = document.getElementById("act_active4");
+			var ulnar_val_act = document.getElementById("act_active4");
+			var handtype4 = hand.type;
+
+			// มือซ้าย
+			if (document.getElementById('myHandLeft3').checked) {	
+				if(handtype4 == "left"){
+					if (document.getElementById('rCheckRadial').checked) {
+						act4_name.value = "Radial_" + (hand.type);
+						// Stop Action
+						if (stop4_pas == 0){
+							// radial_val_pas.value = (deg_dis_radial).toFixed();
+							//stop4_pas = stop4_pas + 1;
+							if(max_deg4_1_1 < (Number((deg_dis_radial).toFixed()))){
+								// radial_max.innerHTML = '&ensp;' + 'Max : ' + (deg_dis_radial).toFixed() + '°';
+								max_deg4_1_1 = Number(deg_dis_radial).toFixed();
+								radial_val_pas.value = max_deg4_1_1;
+							}
+						} 
+						if (stop4_act == 0){
+							// radial_val_act.value = (deg_dis_radial).toFixed();
+							if(max_deg4_1_2 < (Number((deg_dis_radial).toFixed()))){
+								// radial_max.innerHTML = '&ensp;' + 'Max : ' + (deg_dis_radial).toFixed() + '°';
+								max_deg4_1_2 = Number(deg_dis_radial).toFixed();
+								radial_val_act.value = max_deg4_1_2;
+							}
+						} 
+						// End Stop
+						// if(min_deg4_1 > (Number((deg_dis_radial).toFixed()))){
+						// 	radial_min.innerHTML = '&ensp;' + 'Min : ' + (deg_dis_radial).toFixed() + '°';
+						// 	min_deg4_1 = Number((deg_dis_radial).toFixed())
+						// }	
+						// radial_val_pas.value = (deg_dis_radial).toFixed();
+						radial_deg.innerHTML = '&ensp;' + 'Radial: ' + (deg_dis_radial).toFixed() + '°';
+						// get_radial_deg.innerHTML = (deg_dis_radial).toFixed();
+
+					} else if(document.getElementById('rCheckUlnar').checked) {
+						act4_name.value = "Ulnar deviation_" + (hand.type);
+						// Stop Action
+						if (stop4_pas == 0){
+							// ulnar_val_pas.value = (deg_dis_ulnar).toFixed();
+							if(max_deg4_2_1 < (Number((deg_dis_ulnar).toFixed()))){
+								// ulnar_max.innerHTML = '&ensp;' + 'Max : ' + (deg_dis_ulnar).toFixed() + '°';
+								max_deg4_2_1 = Number(deg_dis_ulnar).toFixed();
+								ulnar_val_pas.value = max_deg4_2_1;
+							}
+						}
+						if (stop4_act == 0){
+							// ulnar_val_act.value = (deg_dis_ulnar).toFixed();
+							if(max_deg4_2_2 < (Number((deg_dis_ulnar).toFixed()))){
+								// ulnar_max.innerHTML = '&ensp;' + 'Max : ' + (deg_dis_ulnar).toFixed() + '°';
+								max_deg4_2_2 = Number(deg_dis_ulnar).toFixed();
+								ulnar_val_act.value = max_deg4_2_2;
+							}
+						}
+						// End Stop
+						// if(min_deg4_2 > (Number((deg_dis_ulnar).toFixed()))){
+						// 	ulnar_min.innerHTML = '&ensp;' + 'Min : ' + (deg_dis_ulnar).toFixed() + '°';
+						// 	min_deg4_2 = Number((deg_dis_ulnar).toFixed())
+						// }	
+						//ulnar_val_pas.value = (deg_dis_ulnar).toFixed();
+						ulnar_deg.innerHTML = '&ensp;' + 'Ulnar deviation : ' + (deg_dis_ulnar).toFixed() + '°';
+						// get_ulnar_deg.innerHTML = (deg_dis_ulnar).toFixed();
+					}
+				}
+			}
+			// มือขวา
+			if (document.getElementById('myHandRight4').checked) {	
+				if(handtype4 == "right"){
+					if (document.getElementById('rCheckRadial').checked) {
+						act4_name.value = "Radial_" + (hand.type);
+						// Stop Action
+						if (stop4_pas == 0){
+							// radial_val_pas.value = (deg_dis_radial).toFixed();
+							//stop4_pas = stop4_pas + 1;
+							if(max_deg4_1_1 < (Number((deg_dis_radial).toFixed()))){
+								// radial_max.innerHTML = '&ensp;' + 'Max : ' + (deg_dis_radial).toFixed() + '°';
+								max_deg4_1_1 = Number(deg_dis_radial).toFixed();
+								radial_val_pas.value = max_deg4_1_1;
+							}
+						} 
+						if (stop4_act == 0){
+							// radial_val_act.value = (deg_dis_radial).toFixed();
+							if(max_deg4_1_2 < (Number((deg_dis_radial).toFixed()))){
+								// radial_max.innerHTML = '&ensp;' + 'Max : ' + (deg_dis_radial).toFixed() + '°';
+								max_deg4_1_2 = Number(deg_dis_radial).toFixed();
+								radial_val_act.value = max_deg4_1_2;
+							}
+						} 
+						// End Stop
+						// if(min_deg4_1 > (Number((deg_dis_radial).toFixed()))){
+						// 	radial_min.innerHTML = '&ensp;' + 'Min : ' + (deg_dis_radial).toFixed() + '°';
+						// 	min_deg4_1 = Number((deg_dis_radial).toFixed())
+						// }	
+						// radial_val_pas.value = (deg_dis_radial).toFixed();
+						radial_deg.innerHTML = '&ensp;' + 'Radial: ' + (deg_dis_radial).toFixed() + '°';
+						// get_radial_deg.innerHTML = (deg_dis_radial).toFixed();
+
+					} else if(document.getElementById('rCheckUlnar').checked) {
+						act4_name.value = "Ulnar deviation_" + (hand.type);
+						// Stop Action
+						if (stop4_pas == 0){
+							// ulnar_val_pas.value = (deg_dis_ulnar).toFixed();
+							if(max_deg4_2_1 < (Number((deg_dis_ulnar).toFixed()))){
+								// ulnar_max.innerHTML = '&ensp;' + 'Max : ' + (deg_dis_ulnar).toFixed() + '°';
+								max_deg4_2_1 = Number(deg_dis_ulnar).toFixed();
+								ulnar_val_pas.value = max_deg4_2_1;
+							}
+						}
+						if (stop4_act == 0){
+							// ulnar_val_act.value = (deg_dis_ulnar).toFixed();
+							if(max_deg4_2_2 < (Number((deg_dis_ulnar).toFixed()))){
+								// ulnar_max.innerHTML = '&ensp;' + 'Max : ' + (deg_dis_ulnar).toFixed() + '°';
+								max_deg4_2_2 = Number(deg_dis_ulnar).toFixed();
+								ulnar_val_act.value = max_deg4_2_2;
+							}
+						}
+						// End Stop
+						// if(min_deg4_2 > (Number((deg_dis_ulnar).toFixed()))){
+						// 	ulnar_min.innerHTML = '&ensp;' + 'Min : ' + (deg_dis_ulnar).toFixed() + '°';
+						// 	min_deg4_2 = Number((deg_dis_ulnar).toFixed())
+						// }	
+						//ulnar_val_pas.value = (deg_dis_ulnar).toFixed();
+						ulnar_deg.innerHTML = '&ensp;' + 'Ulnar deviation : ' + (deg_dis_ulnar).toFixed() + '°';
+						// get_ulnar_deg.innerHTML = (deg_dis_ulnar).toFixed();
+					}
+				}
+			}	
+            //มือข้างที่ใช้
+            // var handtype4 = hand.type;
+            // if(handtype4 == "left"){
+            //     hand_type4.innerHTML = '&ensp;' + 'มือข้าง : '+ 'ซ้าย';
+            // } else {
+            //     hand_type4.innerHTML = '&ensp;' + 'มือข้าง : '+ 'ขวา';
+            // }
+
+		}
+	});
+	
+	
+
+	// ------------------------------------------------------------- 3D -----------------------------------------------------------------------	
+	// 3D Leap Motion Hand
+	visualizeHand = function (controller) {
+		controller.use('playback', {
+			recording: 'finger-angle-43fps.json.lz',
+			timeBetweenLoops: 1000,
+			pauseOnHand: false
+		}).on('riggedHand.meshAdded', function (handMesh, leapHand) {
+			handMesh.material.opacity = 1;
+		});
+
+		var overlay = controller.plugins.playback.player.overlay;
+		overlay.style.right = 'auto';
+		overlay.style.left = 'auto';
+		overlay.style.top = 'auto';
+		overlay.style.padding = 0;
+		overlay.style.bottom = '13px';
+		overlay.style.width = '180px';
+
+		controller.use('riggedHand', {
+			scale: 1.3,
+		});
+
+		var camera = controller.plugins.riggedHand.camera;
+		camera.position.set(-8, 8, 20);
+		camera.lookAt(new THREE.Vector3(0, 0, 0));
+	};
+	visualizeHand(Leap.loopController);
+	
+	// (window.controller = new Leap.Controller({background: true})).use('playback', {
+    //     loop: false,
+    //     pauseHotkey: false,
+    //     pauseOnHand: false
+    // }).use('riggedHand').connect();
+	
+</script>
+
+<script>
+	// --------------------------------- Distance between fingers ------------------------
+	// Full screen 2
+	function toggleFullScreen1() {
+	var btn_full1 = document.getElementById("btn_full1");
+	if (!document.fullscreenElement) {
+		document.documentElement.requestFullscreen();
+		btn_full1.innerHTML = "Exit <u>F</u>ull Screen"           
+	} else {
+		if (document.exitFullscreen) {
+			document.exitFullscreen();
+			btn_full1.innerHTML = "<u>F</u>ull Screen"
+			}
+		}     
+	}
+	// --------------------------------- Fold fingers ------------------------------------
+	// Full screen 2
+	function toggleFullScreen2() {
+	var btn_full2 = document.getElementById("btn_full2");
+	if (!document.fullscreenElement) {
+		document.documentElement.requestFullscreen();
+		btn_full2.innerHTML = "Exit <u>F</u>ull Screen"           
+	} else {
+		if (document.exitFullscreen) {
+			document.exitFullscreen();
+			btn_full2.innerHTML = "<u>F</u>ull Screen"
+			}
+		}     
+	}
+	// --------------------- Flexion/Extension -------------------------------------------
+	// Full screen 3
+	function toggleFullScreen3() {
+	var btn_full3 = document.getElementById("btn_full3");
+	if (!document.fullscreenElement) {
+		document.documentElement.requestFullscreen();
+		btn_full3.innerHTML = "Exit <u>F</u>ull Screen"           
+	} else {
+		if (document.exitFullscreen) {
+			document.exitFullscreen();
+			btn_full3.innerHTML = "<u>F</u>ull Screen"
+			}
+		}     
+	}
+	// --------------------- Radial/Ulnar deviation ---------------------------------------  
+    // Full screen 4
+    function toggleFullScreen4() {
+    var btn_full4 = document.getElementById("btn_full4");
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        btn_full4.innerHTML = "Exit <u>F</u>ull Screen"           
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+            btn_full4.innerHTML = "<u>F</u>ull Screen"
+            }
+        }     
+    }
+</script>
+
+<script>
+	var cx1 = document.getElementById("leapmotin1");
+	var cy1 = document.getElementById("leap1Track");
+	var cx2 = document.getElementById("leapmotin1");
+	var cy2 = document.getElementById("leap2Track");
+	var cx3 = document.getElementById("leapmotin1");
+	var cy3 = document.getElementById("leap3Track");
+	var cx4 = document.getElementById("leapmotin1");
+	var cy4 = document.getElementById("leap4Track");
+
+	// --------------------------------- Distance between fingers ------------------------
+	function backLeapMotion1() {	
+  	if (cy1.style.display === "none") {
+    	cx1.style.display = "none";
+		cy1.style.display = "block";
+		document.exitFullscreen()
+  	} else {	
+ 	    cx1.style.display = "block";
+		cy1.style.display = "none";
+		document.exitFullscreen()
+	}
+}
+	function showleapmotion1() {
+  	if (cx1.style.display === "none") {
+    	cx1.style.display = "none";
+		document.exitFullscreen()
+  	} else {
+ 	    cx1.style.display = "none";
+		cy1.style.display = "block";
+		document.exitFullscreen()
+	}
+}
+	// --------------------------------- Fold fingers ------------------------------------
+	function backLeapMotion2() {	
+  	if (cy2.style.display === "none") {
+    	cx2.style.display = "none";
+		cy2.style.display = "block";
+		document.exitFullscreen()
+  	} else {	
+ 	    cx2.style.display = "block";
+		cy2.style.display = "none";
+		document.exitFullscreen()
+	}
+}
+	function showleapmotion2() {
+  	if (cx2.style.display === "none") {
+    	cx2.style.display = "none";
+		document.exitFullscreen()
+  	} else {
+ 	    cx2.style.display = "none";
+		cy2.style.display = "block";
+		document.exitFullscreen()
+	}
+}
+	// --------------------- Flexion/Extension -------------------------------------------
+	function backLeapMotion3() {	
+  	if (cy3.style.display === "none") {
+    	cx3.style.display = "none";
+		cy3.style.display = "block";
+		document.exitFullscreen()
+  	} else {	
+ 	    cx3.style.display = "block";
+		cy3.style.display = "none";
+		document.exitFullscreen()
+	}
+}
+	function showleapmotion3() {
+  	if (cx3.style.display === "none") {
+    	cx3.style.display = "none";
+		document.exitFullscreen()
+  	} else {
+ 	    cx3.style.display = "none";
+		cy3.style.display = "block";
+		document.exitFullscreen()
+	}
+}
+// --------------------- Radial/Ulnar deviation ---------------------------------------
+function backLeapMotion4() {	
+  	if (cy4.style.display === "none") {
+    	cx4.style.display = "none";
+		cy4.style.display = "block";
+		document.exitFullscreen()
+  	} else {	
+ 	    cx4.style.display = "block";
+		cy4.style.display = "none";
+		document.exitFullscreen()
+	}
+}
+	function showleapmotion4() {
+  	if (cx4.style.display === "none") {
+    	cx4.style.display = "none";
+		document.exitFullscreen()
+  	} else {
+ 	    cx4.style.display = "none";
+		cy4.style.display = "block";
+		document.exitFullscreen()
+	}
+}
+</script>
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ End Leap Motion Script +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- Date Picker -->
+<script>
+	var date_start = new Date();
+	date_start.setDate(date_start.getDate());
+	$('#examination_next').datepicker({
+		format: 'dd-mm-yyyy',
+		language: 'th',
+		startDate : 'date_start',
+		endDate:'+7m',
+		todayHighlight: true
+	});
+</script>
+
+</body>
+
+	<!--   Core JS Files   -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- <script src="assets/js/jquery-2.2.4.min.js" type="text/javascript"></script> -->
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+
+	<!--  Plugin for the Wizard -->
+	<script src="assets/js/demo.js" type="text/javascript"></script>
+	<script src="assets/js/paper-bootstrap-wizard.js" type="text/javascript"></script>
+
+	<!--  More information about jquery.validate here: https://jqueryvalidation.org/	 -->
+	<script src="assets/js/jquery.validate.min.js" type="text/javascript"></script>
+</html>
